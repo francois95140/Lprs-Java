@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="955.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
    <children>
-      <Label layoutX="386.0" layoutY="70.0" text="Connexion" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="37.0" />
-         </font>
-      </Label>
-      <Label layoutX="451.0" layoutY="175.0" text="Email" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="412.0" layoutY="281.0" text="Mot de passe" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
-      <TextField fx:id="email" layoutX="377.0" layoutY="223.0" prefHeight="31.0" prefWidth="202.0" promptText="Votre email" style="-fx-background-color: #9C9C9C; -fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10; -fx-border-color: #3E00FF;" />
-      <TextField fx:id="motDePasse" layoutX="376.0" layoutY="326.0" prefHeight="31.0" prefWidth="202.0" promptText="Mot de passe" style="-fx-background-color: #9C9C9C; -fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10; -fx-border-color: #3E00FF;" />
-      <Button fx:id="seConnecter" layoutX="432.0" layoutY="377.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Se connecter" />
-      <Button fx:id="oublier" layoutX="411.0" layoutY="417.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" text="mot de passe oblier" />
-      <Label fx:id="Error" alignment="CENTER" layoutX="447.0" layoutY="141.0" prefHeight="20.0" prefWidth="62.0" textFill="RED">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="593.0" prefWidth="420.0" style="-fx-background-color: #9C9C9C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="65.0" layoutY="271.0" prefHeight="50.0" prefWidth="294.0" text="LPRS Gestion" textFill="WHITE" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="271.0">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="420.0" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MFXTextField fx:id="userName" floatingText="Email" layoutX="190.0" layoutY="230.0" prefHeight="50.0" prefWidth="199.0" AnchorPane.bottomAnchor="319.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="231.0" />
+            <MFXPasswordField fx:id="passeword" floatingText="Mot de passe" layoutX="190.0" layoutY="313.0" prefHeight="50.0" prefWidth="199.0" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="313.0" />
+            <MFXButton fx:id="seConnecter" layoutX="245.0" layoutY="403.0" prefHeight="26.0" prefWidth="90.0" text="Se Connecter" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="403.0" />
+            <Label alignment="CENTER" layoutX="64.0" layoutY="108.0" prefHeight="46.0" prefWidth="173.0" text="Connexion" textAlignment="CENTER" textFill="#9c9c9c" AnchorPane.bottomAnchor="434.6" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="108.0">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="Errour" alignment="CENTER" layoutX="64.0" layoutY="155.0" text="Mot de passe ou email incorrect" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="387.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="155.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="34.0" layoutY="554.0" text="J'ai oublie mon mot de passe ?" textFill="WHITE" underline="true" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="375.8" AnchorPane.topAnchor="554.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
