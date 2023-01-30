@@ -4,8 +4,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 public class Database {
     private String url = "jdbc:mysql://localhost/projet_lprs_java?serverTimezone=UTC";
-    private String user = "projet_lprs";
-    private String password = "lprs";
+    private String user = "root";
+    private String password = "";
     public Connection getConnection() {
 
         try {

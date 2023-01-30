@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom` varchar(40) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
+  `mdp` varchar(15) NOT NULL,
   `role` tinyint(3) NOT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
