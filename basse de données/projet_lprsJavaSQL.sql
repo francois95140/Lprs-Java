@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `demande_fournitures`;
 CREATE TABLE IF NOT EXISTS `demande_fournitures` (
   `id_demande` int(11) NOT NULL AUTO_INCREMENT,
   `nom_fourniture` varchar(30) NOT NULL,
-  `nombre_demander` int(40) NOT NULL,
+  `quantite_demander` int(40) NOT NULL,
   `ref_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id_demande`),
   KEY `fk_demande_user` (`ref_utilisateur`)
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `fiche_fourniture` (
   `id_fiche_fourniture` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
   `prix` varchar(20) NOT NULL,
-  `nombre_fourniture` int(30) NOT NULL,
+  `quantite` int(30) NOT NULL,
   PRIMARY KEY (`id_fiche_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
