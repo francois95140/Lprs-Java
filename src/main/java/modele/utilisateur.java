@@ -3,17 +3,23 @@ package modele;
 public class utilisateur {
 
 
-
+        private int idUser;
         private String prenom;
         private String nom;
         private String email;
         private String role;
+        private String mdp;
+        private boolean estAdmin;
 
-        public utilisateur(String prenom, String nom, String email, String role) {
+    public utilisateur(int idUser, String prenom, String nom, String email, String role, String mdp, boolean estAdmin) {
+            this.idUser = idUser;
             this.prenom = prenom;
             this.nom = nom;
             this.email = email;
             this.role = role;
+            this.mdp = mdp;
+            this.estAdmin = estAdmin;
+
         }
 
         public String getPrenom() {
