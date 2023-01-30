@@ -8,6 +8,7 @@ module com.example.lprs {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens com.example.lprs to javafx.fxml;
     exports com.example.lprs;
