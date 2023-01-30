@@ -1,4 +1,4 @@
-package appli.User;
+package modele;
 
 public class FicheEtudiant {
 private int idFiche;
