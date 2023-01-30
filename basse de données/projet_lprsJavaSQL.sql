@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `fourniture` (
   `id_fourniture` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
   `stock` int(20) NOT NULL,
-  `fourniseur` int(20) NOT NULL,
+  `fourniseur` varchar (20) NOT NULL,
   PRIMARY KEY (`id_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
