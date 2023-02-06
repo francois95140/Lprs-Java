@@ -13,4 +13,7 @@ module com.example.lprs {
 
     opens com.example.lprs to javafx.fxml;
     exports com.example.lprs;
+    exports com.example.lprs.admin;
+    opens com.example.lprs.admin to javafx.fxml;
+    opens  modele to javafx.base;
 }
