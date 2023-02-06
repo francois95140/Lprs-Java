@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 23 jan. 2023 à 10:59
+-- Généré le : lun. 06 fév. 2023 à 10:36
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `fiche_fourniture` (
   `id_fiche_fourniture` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
   `prix` varchar(20) NOT NULL,
-  `quantite` int(30) NOT NULL,
+  `quantite_fourniture` int(30) NOT NULL,
   PRIMARY KEY (`id_fiche_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `fourniture` (
   `id_fourniture` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
   `stock` int(20) NOT NULL,
-  `fourniseur` varchar (20) NOT NULL,
+  `fourniseur` varchar(20) NOT NULL,
   PRIMARY KEY (`id_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -144,10 +144,25 @@ CREATE TABLE IF NOT EXISTS `rendez-vous` (
   `id_rdv` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `heure` time NOT NULL,
-  `salle` int(3) NOT NULL,
+  `ref_salle` int(3) NOT NULL,
   `ref_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id_rdv`),
-  KEY `fk_rdv_user` (`ref_utilisateur`)
+  KEY `fk_rdv_user` (`ref_utilisateur`),
+  KEY `fk-rdv_salle` (`ref_salle`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `salle`
+--
+
+DROP TABLE IF EXISTS `salle`;
+CREATE TABLE IF NOT EXISTS `salle` (
+  `id_salle` int(11) NOT NULL AUTO_INCREMENT,
+  `numero` int(23) NOT NULL,
+  `Batiment` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_salle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -165,7 +180,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `mdp` varchar(15) NOT NULL,
   `role` tinyint(3) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
+(1, 'Louisy', 'arnaud', 'a.louisy@lprs.fr', '', 1);
 
 --
 -- Contraintes pour les tables déchargées
@@ -193,13 +215,9 @@ ALTER TABLE `fiche_etudiant`
 -- Contraintes pour la table `rendez-vous`
 --
 ALTER TABLE `rendez-vous`
+  ADD CONSTRAINT `fk-rdv_salle` FOREIGN KEY (`ref_salle`) REFERENCES `salle` (`id_salle`),
   ADD CONSTRAINT `fk_rdv_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
 COMMIT;
-
-
-ALTER TABLE `rendez-vous`
-    ADD CONSTRAINT `fk-rdv_salle` FOREIGN KEY (`ref_salle`) REFERENCES `salle` (`id_salle`);
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
