@@ -6,7 +6,6 @@ import modele.Utilisateur;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class UtilisateurRepository {
@@ -56,6 +55,17 @@ public class UtilisateurRepository {
             e.printStackTrace();
         }
         return Utilisateurs;
+    }
+
+    public void changepasseword (Utilisateur utilisateur) throws SQLException {
+        String sql;
+        PreparedStatement pstm;
+        sql = "UPDATE `"+table+"` SET `mdp`=md5(?) WHERE id_user=?";
+        pstm = coBdd.getConnection().prepareStatement(sql);
+        pstm.setString(1, utilisateur.getMdp());
+        pstm.setInt(2, utilisateur.getIdUtilisateur());
+        pstm.executeUpdate();
+
     }
 
 }
