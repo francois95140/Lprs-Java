@@ -15,11 +15,11 @@ private int telephone;
 
 private String rue;
 
-private String cp;
+private int cp;
 private String ville;
 private int ref_utilisateur;
 
-    public FicheEtudiant(int idFiche, String nom, String prenom, String email, String diplome, int telephone, String rue, int cp,String ville, int ref_utilisateur){
+    public FicheEtudiant(int idFiche, String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur){
         this.idFiche = idFiche;
         this.nom = nom;
         this.prenom = prenom;
@@ -27,7 +27,7 @@ private int ref_utilisateur;
         this.diplome = diplome;
         this.telephone = telephone;
         this.rue = rue;
-        this.cp = String.valueOf(cp);
+        this.cp = cp;
         this.ville = ville;
         this.ref_utilisateur = ref_utilisateur;
 
@@ -89,11 +89,11 @@ private int ref_utilisateur;
         this.rue = rue;
     }
 
-    public String getCp() {
+    public int getCp() {
         return cp;
     }
 
-    public void setCp(String cp) {
+    public void setCp(int cp) {
         this.cp = cp;
     }
 
