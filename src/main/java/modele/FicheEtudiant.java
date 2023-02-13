@@ -18,16 +18,6 @@ private String rue;
 private String cp;
 private String ville;
 private int ref_utilisateur;
-    private int code;
-
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
 
     public FicheEtudiant(int idFiche, String nom, String prenom, String email, String diplome, int telephone, String rue, int cp,String ville, int ref_utilisateur){
         this.idFiche = idFiche;

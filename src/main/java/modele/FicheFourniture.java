@@ -2,12 +2,13 @@ package modele;
 
 public class FicheFourniture {
 
-
+        private int id_fiche_fourniture;
         private String nom;
         private double prix;
         private int quantite;
 
-        public FicheFourniture(String nom, double prix, int quantite) {
+        public FicheFourniture(int id_fiche_fourniture, String nom, double prix, int quantite) {
+            this.id_fiche_fourniture = id_fiche_fourniture;
             this.nom = nom;
             this.prix = prix;
             this.quantite = quantite;

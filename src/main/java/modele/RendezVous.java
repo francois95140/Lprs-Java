@@ -2,14 +2,15 @@ package modele;
 
 public class RendezVous {
 
-
+        private int id_rdv;
 
         private String date;
         private String heure;
         private String salle;
         private String RefUtilisateur;
 
-        public RendezVous(String date, String heure, String salle, String RefUtilisateur) {
+        public RendezVous( int id_rdv, String date, String heure, String salle, String RefUtilisateur) {
+            this.id_rdv = id_rdv;
             this.date = date;
             this.heure = heure;
             this.salle = salle;

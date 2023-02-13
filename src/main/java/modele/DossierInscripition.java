@@ -2,14 +2,15 @@ package modele;
 
 public class DossierInscripition {
 
-
+        private int id_dossier;
         private String date;
         private String heure;
         private String filiere;
         private String motivation;
         private String ref_fiche;
 
-        public DossierInscripition(String date, String heure, String filiere, String motivation, String ref_fiche) {
+        public DossierInscripition(int id_dossier, String date, String heure, String filiere, String motivation, String ref_fiche) {
+            this.id_dossier = id_dossier;
             this.date = date;
             this.heure = heure;
             this.filiere = filiere;
