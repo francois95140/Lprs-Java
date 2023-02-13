@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="655.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lprs.FicheEtudiante">
+   <children>
+      <Label alignment="CENTER" layoutX="268.0" layoutY="29.0" prefHeight="73.0" prefWidth="245.0" text="Fiche etudiant" textAlignment="CENTER" textFill="#9c9c9c">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="userName" alignment="CENTER" floatingText="Nom" layoutX="316.0" layoutY="114.0" prefHeight="37.0" prefWidth="149.0" />
+      <MFXTextField fx:id="userName1" alignment="CENTER" floatingText="Prenom" layoutX="316.0" layoutY="174.0" prefHeight="49.0" prefWidth="149.0" />
+      <MFXTextField fx:id="userName11" alignment="CENTER" floatingText="Email" layoutX="316.0" layoutY="233.0" prefHeight="49.0" prefWidth="149.0" />
+      <MFXTextField fx:id="userName12" alignment="CENTER" floatingText="Diplome " layoutX="308.0" layoutY="291.0" prefHeight="49.0" prefWidth="165.0" />
+      <MFXTextField fx:id="userName13" alignment="CENTER" floatingText="Telephone " layoutX="308.0" layoutY="347.0" prefHeight="49.0" prefWidth="165.0" />
+      <MFXTextField fx:id="userName131" alignment="CENTER" floatingText="Rue" layoutX="308.0" layoutY="404.0" prefHeight="49.0" prefWidth="165.0" />
+      <MFXTextField fx:id="userName1311" alignment="CENTER" floatingText="Code Postal" layoutX="308.0" layoutY="463.0" prefHeight="49.0" prefWidth="165.0" />
+      <MFXTextField fx:id="userName13111" alignment="CENTER" floatingText="Ville" layoutX="308.0" layoutY="522.0" prefHeight="49.0" prefWidth="165.0" />
+      <MFXButton fx:id="seConnecter" alignment="CENTER" layoutX="325.0" layoutY="596.0" onAction="#seConnecter" prefHeight="26.0" prefWidth="131.0" text="Crée " />
+   </children>
+</AnchorPane>
