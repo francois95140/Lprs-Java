@@ -7,6 +7,7 @@ public class Utilisateur {
     private String email;
     private String role;
     private String mdp;
+    private String code;
 
     public Utilisateur(int idUtilisateur, String nom, String prenom, String email, String mdp, String role) {
         this.idUtilisateur = idUtilisateur;
@@ -73,4 +74,11 @@ public class Utilisateur {
         this.mdp = mdp;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }
