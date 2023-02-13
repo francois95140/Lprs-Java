@@ -14,7 +14,15 @@ public class FicheFourniture {
             this.quantite = quantite;
         }
 
-        public String getnom() {
+    public int getId_fiche_fourniture() {
+        return id_fiche_fourniture;
+    }
+
+    public void setId_fiche_fourniture(int id_fiche_fourniture) {
+        this.id_fiche_fourniture = id_fiche_fourniture;
+    }
+
+    public String getnom() {
             return nom;
         }
 
