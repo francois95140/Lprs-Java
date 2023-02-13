@@ -7,11 +7,11 @@ public class FicheFourniture {
         private double prix;
         private int quantite;
 
-        public FicheFourniture(String nom, double prix, int quantite) {
+        public FicheFourniture(String nom, double prix, int quantite) {x
             this.nom = nom;
             this.prix = prix;
             this.quantite = quantite;
-        }
+        }<
 
         public String getnom() {
             return nom;
