@@ -23,7 +23,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="420.0" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="420.0" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MFXTextField fx:id="userName" floatingText="Email" layoutX="190.0" layoutY="230.0" prefHeight="50.0" prefWidth="199.0" AnchorPane.bottomAnchor="319.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.0" />
             <MFXPasswordField fx:id="passeword" floatingText="Mot de passe" layoutX="190.0" layoutY="313.0" prefHeight="50.0" prefWidth="199.0" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.0" />
@@ -33,12 +33,12 @@
                   <Font name="System Bold Italic" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="Erreur" alignment="CENTER" layoutX="65.0" layoutY="149.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="393.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="149.0">
+            <Label fx:id="Erreur" alignment="CENTER" layoutX="64.0" layoutY="165.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="377.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="165.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="PassewordForget" layoutX="34.0" layoutY="554.0" onAction="#PassewordForget" text="J'ai oublie mon mot de passe ?" textFill="WHITE" underline="true" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="375.8" AnchorPane.topAnchor="554.0" />
+            <Hyperlink fx:id="PassewordForget" layoutX="34.0" layoutY="554.0" onAction="#PassewordForget" prefHeight="24.0" prefWidth="172.0" text="J'ai oublie mon mot de passe ?" textFill="WHITE" underline="true" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="374.0" />
          </children>
       </AnchorPane>
    </children>

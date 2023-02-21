@@ -31,7 +31,7 @@ public class LogingController {
 
     @FXML
     void PassewordForget(ActionEvent event) {
-        RunApplication.changeScene("/com/example/lprs/user/reset-password");
+        RunApplication.changeScene("/com/example/lprs/user/reset-password",new ResetPassword(null,false));
         System.out.println("User passeword forget");
     }
 
@@ -46,7 +46,7 @@ public class LogingController {
                 RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(u));
                 System.out.println("Admin connecte");
             } else {
-                RunApplication.changeScene("/com/example/lprs/resetpassword");
+                RunApplication.changeScene("/com/example/lprs/user/accueil",new Accueil(u));
                 System.out.println("User connecte");
             }
 
