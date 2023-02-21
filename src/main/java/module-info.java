@@ -10,6 +10,8 @@ module com.example.lprs {
     requires com.almasb.fxgl.all;
     requires MaterialFX;
     requires java.sql;
+    requires java.mail;
+    requires mysql.connector.j;
 
     opens com.example.lprs to javafx.fxml;
     exports com.example.lprs;
