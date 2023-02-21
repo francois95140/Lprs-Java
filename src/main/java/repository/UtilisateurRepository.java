@@ -6,6 +6,7 @@ import modele.Utilisateur;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class UtilisateurRepository {
@@ -15,6 +16,43 @@ public class UtilisateurRepository {
     public UtilisateurRepository() {
         coBdd = new Database();
     }
+
+    public Utilisateur inscription (Utilisateur utilisateur) throws SQLException{
+        String sql;
+        PreparedStatement pstm;
+        if(utilisateur.getIdUtilisateur()>0) {
+            sql = "UPDATE `"+table+"` SET `nom`=?,`prenom`=?,`email`=?,`mdp`=? WHERE id_utilisateur=?";
+            pstm = coBdd.getConnection().prepareStatement(sql);
+            pstm.setString(1, utilisateur.getNom());
+            pstm.setString(2, utilisateur.getPrenom());
+            pstm.setString(3, utilisateur.getEmail());
+            pstm.setString(4, utilisateur.getRole());
+            pstm.setInt(5, utilisateur.getIdUtilisateur());
+            pstm.executeUpdate();
+
+        }
+//insert
+        else {
+            sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `email`,`mdp`,`role`) VALUES (?,?,?,md5(?),?)";
+
+            pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1, utilisateur.getNom());
+            pstm.setString(2, utilisateur.getPrenom());
+            pstm.setString(3, utilisateur.getEmail());
+            pstm.setString(4, utilisateur.getMdp());
+            pstm.setString(5, utilisateur.getRole());
+            pstm.executeUpdate();
+            ResultSet rs = pstm.getGeneratedKeys();
+            if(rs.next())
+            {
+                int last_inserted_id = rs.getInt(1);
+                utilisateur.setIdUtilisateur(last_inserted_id);
+            }
+
+        }
+        return utilisateur;
+    }
+
 
     public Utilisateur connexion(String email, String motDePasse) {
         Utilisateur Utilisateur = null;
@@ -78,14 +116,17 @@ public class UtilisateurRepository {
     }
 
     public void changepasseword(Utilisateur utilisateur) throws SQLException {
+        System.out.println(utilisateur.getMdp());
         String sql;
         PreparedStatement pstm;
         sql = "UPDATE `" + table + "` SET `mdp`=md5(?) WHERE id_user=?";
         pstm = coBdd.getConnection().prepareStatement(sql);
+        System.out.println(utilisateur.getMdp());
         pstm.setString(1, utilisateur.getMdp());
         pstm.setInt(2, utilisateur.getIdUtilisateur());
+        System.out.println(utilisateur.getIdUtilisateur());
+        System.out.println("good");
         pstm.executeUpdate();
-
     }
 
 }
