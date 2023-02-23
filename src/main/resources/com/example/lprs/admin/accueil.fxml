@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="560.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="560.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane layoutX="159.0" layoutY="115.0" prefHeight="50.0" prefWidth="353.0" styleClass="pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -20,7 +20,10 @@
             <tabs>
                 <Tab fx:id="profil" text="Profile">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="840.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="840.0">
+                     <children>
+                        <MFXButton fx:id="modifMyAccont" layoutX="388.0" layoutY="253.0" onAction="#modifMyAccont" text="Modifier" />
+                     </children></AnchorPane>
                     </content>
                 </Tab>
                 <Tab fx:id="listeEleve" text="Listes Eleve">

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lprs.LogingController">
+<AnchorPane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
    <cursor>
       <Cursor fx:constant="HAND" />
    </cursor>
@@ -25,7 +25,7 @@
       <AnchorPane layoutX="420.0" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MFXTextField fx:id="nom" floatingText="Nom" layoutX="191.0" layoutY="182.0" prefHeight="50.0" prefWidth="199.0" AnchorPane.bottomAnchor="367.6" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.0" />
-            <MFXButton fx:id="valiez" layoutX="244.0" layoutY="469.0" onAction="#Validez" prefHeight="26.0" prefWidth="90.0" text="Validez" AnchorPane.bottomAnchor="104.60000000000002" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="246.0" />
+            <MFXButton fx:id="valiez" layoutX="244.0" layoutY="469.0" onAction="#validez" prefHeight="26.0" prefWidth="90.0" text="validez" AnchorPane.bottomAnchor="104.60000000000002" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="246.0" />
             <Label alignment="CENTER" layoutX="64.0" layoutY="61.0" prefHeight="46.0" prefWidth="173.0" text="Création de compte" textAlignment="CENTER" textFill="#9c9c9c" AnchorPane.bottomAnchor="481.6" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="61.0">
                <font>
                   <Font name="System Bold Italic" size="36.0" />

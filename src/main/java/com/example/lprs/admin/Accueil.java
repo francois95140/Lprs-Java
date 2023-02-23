@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 public class Accueil implements Initializable {
 
     private Utilisateur utilisateur;
+    private Utilisateur seconduser;
 
     public Accueil (Utilisateur u) {
         this.utilisateur = u;
@@ -30,6 +31,9 @@ public class Accueil implements Initializable {
 
     @FXML
     private MenuItem deletUser;
+
+    @FXML
+    private MFXButton modifMyAccont;
 
     @FXML
     private Tab demande;
@@ -63,14 +67,19 @@ public class Accueil implements Initializable {
 
     @FXML
     void onClickDeletUser(ActionEvent event) {
-        Passewordgenerator passe =new Passewordgenerator();
         System.out.println("flag");
     }
 
     @FXML
+    void modifMyAccont(ActionEvent event) {
+        RunApplication.changeScene("/com/example/lprs/admin/creat-user",new CreatUser(utilisateur,utilisateur));
+        System.out.println(utilisateur.getIdUtilisateur());
+    }
+
+    @FXML
     void onClickNewUser(ActionEvent event) {
-        if (utilisateur.getRole().equals("1")){
-            RunApplication.changeScene("/com/example/lprs/admin/creat-user",new CreatUser(utilisateur.getIdUtilisateur()));
+        if (utilisateur.getRole() == 1 ){
+            RunApplication.changeScene("/com/example/lprs/admin/creat-user",new CreatUser(utilisateur));
             System.out.println(utilisateur.getIdUtilisateur());
         }
 
