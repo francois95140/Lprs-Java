@@ -5,11 +5,11 @@ public class Utilisateur {
     private String prenom;
     private String nom;
     private String email;
-    private String role;
+    private Integer role;
     private String mdp;
     private String code;
 
-    public Utilisateur(int idUtilisateur, String nom, String prenom, String email, String mdp, String role) {
+    public Utilisateur(int idUtilisateur, String nom, String prenom, String email, String mdp, int role) {
         this.idUtilisateur = idUtilisateur;
         this.prenom = prenom;
         this.nom = nom;
@@ -18,12 +18,20 @@ public class Utilisateur {
         this.mdp = mdp;
     }
 
-    public Utilisateur(int idUtilisateur, String nom, String prenom, String email, String role) {
+    public Utilisateur(int idUtilisateur, String nom, String prenom, String email, int role) {
         this.idUtilisateur = idUtilisateur;
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
         this.role = role;
+    }
+
+    public Utilisateur(String nom, String prenom, String email,String mdp ,int role) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.email = email;
+        this.role = role;
+        this.mdp = mdp;
     }
 
     public int getIdUtilisateur() {
@@ -58,11 +66,11 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
