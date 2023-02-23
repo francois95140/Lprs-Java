@@ -42,7 +42,7 @@ public class LogingController {
         UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
         Utilisateur u = utilisateurRepository.connexion(userName.getText(),passeword.getText());
         if(u != null){
-            if (u.getRole().equals("1")){
+            if (u.getRole()==1){
                 RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(u));
                 System.out.println("Admin connecte");
             } else {
