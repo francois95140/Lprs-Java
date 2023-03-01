@@ -2,7 +2,6 @@ package repository;
 
 import BDD.Database;
 import modele.Utilisateur;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,13 +20,14 @@ public class UtilisateurRepository {
         String sql;
         PreparedStatement pstm;
         if(utilisateur.getIdUtilisateur()>0) {
-            sql = "UPDATE `"+table+"` SET `nom`=?,`prenom`=?,`email`=?,`mdp`=? WHERE id_utilisateur=?";
+            sql = "UPDATE `"+table+"` SET `nom`=?,`prenom`=?,`email`=?,`mdp`=?,`role`=? WHERE id_user=?";
             pstm = coBdd.getConnection().prepareStatement(sql);
             pstm.setString(1, utilisateur.getNom());
             pstm.setString(2, utilisateur.getPrenom());
             pstm.setString(3, utilisateur.getEmail());
-            pstm.setString(4, utilisateur.getRole());
-            pstm.setInt(5, utilisateur.getIdUtilisateur());
+            pstm.setString(4, utilisateur.getMdp());
+            pstm.setString(5, String.valueOf(utilisateur.getRole()));
+            pstm.setInt(6, utilisateur.getIdUtilisateur());
             pstm.executeUpdate();
 
         }
@@ -40,12 +40,13 @@ public class UtilisateurRepository {
             pstm.setString(2, utilisateur.getPrenom());
             pstm.setString(3, utilisateur.getEmail());
             pstm.setString(4, utilisateur.getMdp());
-            pstm.setString(5, utilisateur.getRole());
+            pstm.setString(5, String.valueOf(utilisateur.getRole()));
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next())
             {
                 int last_inserted_id = rs.getInt(1);
+                System.out.println(last_inserted_id);
                 utilisateur.setIdUtilisateur(last_inserted_id);
             }
 
@@ -65,7 +66,7 @@ public class UtilisateurRepository {
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
 
-                Utilisateur = new Utilisateur(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("mdp"), rs.getString("role"));
+                Utilisateur = new Utilisateur(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("mdp"), rs.getInt("role"));
             }
         } catch (SQLException e) {
 // TODO Auto-generated catch block
@@ -86,7 +87,7 @@ public class UtilisateurRepository {
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 System.out.println(rs.getString("nom"));
-                utilisateur = new Utilisateur(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("mdp"), rs.getString("role"));
+                utilisateur = new Utilisateur(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("mdp"), rs.getInt("role"));
             }
         } catch (SQLException e) {
 // TODO Auto-generated catch block
@@ -105,7 +106,7 @@ public class UtilisateurRepository {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                utilisateur = new Utilisateur(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("role"));
+                utilisateur = new Utilisateur(rs.getInt("id_user"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getInt("role"));
                 Utilisateurs.add(utilisateur);
             }
         } catch (SQLException e) {

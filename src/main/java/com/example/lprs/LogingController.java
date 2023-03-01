@@ -1,6 +1,7 @@
 package com.example.lprs;
 
 import com.example.lprs.admin.Accueil;
+import com.example.lprs.user.AccueilU;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -46,7 +47,7 @@ public class LogingController {
                 RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(u));
                 System.out.println("Admin connecte");
             } else {
-                RunApplication.changeScene("/com/example/lprs/user/accueil",new Accueil(u));
+                RunApplication.changeScene("/com/example/lprs/user/accueil",new AccueilU(u));
                 System.out.println("User connecte");
             }
 
