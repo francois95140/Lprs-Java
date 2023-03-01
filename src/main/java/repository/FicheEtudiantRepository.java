@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class FicheEtudiantRepository
+public class  FicheEtudiantRepository
 {
     private Database coBdd;
     private String table = "fiche_etudiant";
