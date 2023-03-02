@@ -1,7 +1,6 @@
 package repository;
 
 import BDD.Database;
-import modele.FicheFourniture;
 import modele.Fourniture;
 
 import java.sql.PreparedStatement;

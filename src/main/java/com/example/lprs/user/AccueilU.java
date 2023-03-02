@@ -78,7 +78,7 @@ public class AccueilU implements Initializable {
         if(utilisateur.getRole()==3){
             RunApplication.changeScene("/com/example/lprs/user/FicheEtudiant",new FicheControler(utilisateur));
         }
-    }
+    }b
 
     @FXML
     void onLogoutButtonClick(ActionEvent event) {
