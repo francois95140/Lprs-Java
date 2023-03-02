@@ -30,7 +30,17 @@ private int ref_utilisateur;
         this.cp = cp;
         this.ville = ville;
         this.ref_utilisateur = ref_utilisateur;
-
+    }
+    public FicheEtudiant( String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.diplome = diplome;
+        this.telephone = telephone;
+        this.rue = rue;
+        this.cp = cp;
+        this.ville = ville;
+        this.ref_utilisateur = ref_utilisateur;
     }
 
     public int getIdFiche() {
