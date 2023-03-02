@@ -1,14 +1,15 @@
 package repository;
 import BDD.Database;
-import modele.FicheEtudiant;
+
 import modele.FicheFourniture;
-import modele.Utilisateur;
+
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 public class FicheFournitureRepository {
     private Database coBDD;
     private String table = "fiche_fourniture";

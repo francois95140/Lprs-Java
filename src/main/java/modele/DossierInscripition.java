@@ -18,7 +18,15 @@ public class DossierInscripition {
             this.ref_fiche = ref_fiche;
         }
 
-        public String getDate() {
+    public int getId_dossier() {
+        return id_dossier;
+    }
+
+    public void setId_dossier(int id_dossier) {
+        this.id_dossier = id_dossier;
+    }
+
+    public String getDate() {
             return date;
         }
 
