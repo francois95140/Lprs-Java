@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="461.0" style="-fx-background-color: #9C9C9C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="580.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="-1.0" layoutY="271.0" prefHeight="58.0" prefWidth="420.0" text="FICHE ETUDIANTE" textFill="WHITE" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="271.0">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="420.0" onDragDetected="#onClickBack" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MFXButton fx:id="validee" layoutX="107.0" layoutY="504.0" onAction="#validee" prefHeight="51.0" prefWidth="147.0" text="Validée" AnchorPane.bottomAnchor="44.799999999999955" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="327.0" />
+            <Label fx:id="Erreur" alignment="CENTER" layoutX="84.0" layoutY="21.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="521.0" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <MFXTextField fx:id="diplome" floatingText="Diplôme" layoutX="107.0" layoutY="293.0" prefHeight="50.0" prefWidth="146.0" promptText="Master" AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="293.0" />
+            <MFXTextField fx:id="tel" floatingText="Téléphon" layoutX="336.0" layoutY="241.0" prefHeight="240.0" prefWidth="147.0" promptText="0788191572" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="336.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="241.0" />
+            <MFXTextField fx:id="cp" floatingText="Code Postale" layoutX="107.0" layoutY="394.0" prefHeight="50.0" prefWidth="146.0" promptText="75016" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="394.0" />
+            <MFXTextField fx:id="rue" floatingText="Rue" layoutX="336.0" layoutY="344.0" prefHeight="50.0" prefWidth="146.0" promptText="12 Rue sabrid" />
+            <MFXTextField fx:id="prenom" floatingText="Prenom" layoutX="336.0" layoutY="139.0" prefHeight="50.0" prefWidth="146.0" promptText="DOE" />
+            <MFXTextField fx:id="nom" floatingText="Nom" layoutX="107.0" layoutY="88.0" prefHeight="50.0" prefWidth="146.0" promptText="Joe" />
+            <MFXTextField fx:id="ville" floatingText="Ville" layoutX="336.0" layoutY="454.0" prefHeight="50.0" prefWidth="146.0" promptText="Paris" />
+            <MFXTextField fx:id="email" floatingText="Email" layoutX="107.0" layoutY="190.0" prefHeight="50.0" prefWidth="146.0" promptText="joedoe@gmail.com" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
