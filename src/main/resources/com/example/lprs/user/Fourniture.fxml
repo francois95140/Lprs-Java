@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="36.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+      <Text layoutX="36.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" />
+      <Text layoutX="36.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fournisseur" />
+      <Text layoutX="258.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fourniture" />
+      <MFXTextField layoutX="185.0" layoutY="96.0" />
+      <MFXTextField layoutX="187.0" layoutY="183.0" />
+      <MFXTextField layoutX="187.0" layoutY="267.0" />
+   </children>
+</AnchorPane>
