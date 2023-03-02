@@ -2,14 +2,12 @@ package com.example.lprs.user;
 
 import com.example.lprs.RunApplication;
 import com.example.lprs.admin.CreatUser;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.control.MenuItem;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import modele.FicheEtudiant;
@@ -20,21 +18,26 @@ import java.util.ResourceBundle;
 
 public class AccueilU implements Initializable {
 
+
     private Utilisateur utilisateur;
     private FicheEtudiant ficheEtudiant;
 
     public AccueilU(Utilisateur u) {
         this.utilisateur = u;
     }
+    public AccueilU(Utilisateur u,FicheEtudiant fiche) {
+        this.utilisateur = u;
+        this.ficheEtudiant = fiche;
+    }
 
     @FXML
     private MenuItem deletFiche;
 
     @FXML
-    private Tab demande;
+    private MenuItem newFiche;
 
     @FXML
-    private Tab dossier;
+    private Tab demande;
 
     @FXML
     private MFXTableView<?> eleveListe;
@@ -55,7 +58,10 @@ public class AccueilU implements Initializable {
     private MFXButton modifMyAccont;
 
     @FXML
-    private MenuItem newFiche;
+    private MenuItem newUser;
+
+    @FXML
+    private Tab personnel;
 
     @FXML
     private Tab profil;
@@ -69,54 +75,22 @@ public class AccueilU implements Initializable {
     }
 
     @FXML
-    void onClickDeletFiche(ActionEvent event) {
-        System.out.println("no");
-    }
-
-    @FXML
-    void onClickNewFiche(ActionEvent event) {
-        if(utilisateur.getRole()==3){
-            RunApplication.changeScene("/com/example/lprs/user/FicheEtudiant",new FicheControler(utilisateur));
-        }
-    }b
-
-    @FXML
-    void onLogoutButtonClick(ActionEvent event) {
-
-    }
-
-    @FXML
     void onRowClick(MouseEvent event) {
 
     }
 
     @FXML
-    void onClickDossierInscription(ActionEvent event) {
+    void onClickDeletFiche(ActionEvent event) {
 
+    }
+
+    @FXML
+    void onClickNewFiche(ActionEvent event) {
+        RunApplication.changeScene("/com/example/lprs/user/FicheEtudiant",new FicheControler(utilisateur));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(utilisateur.getRole()==3){
-            demande.setDisable(true);
-            stokck.setDisable(true);
-
-        }
-        else if (utilisateur.getRole()==4){
-            listeEleve.setDisable(true);
-            dossier.setDisable(true);
-        }
-        else if(utilisateur.getRole()==2){
-            listeEleve.setDisable(true);
-            stokck.setDisable(true);
-            deletFiche.setText("Demande");
-            deletFiche.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-
-                }
-            });
-        }
 
     }
 }

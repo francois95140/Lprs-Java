@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="560.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TabPane layoutX="827.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab fx:id="profil" text="Profile">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="840.0">
+                     <children>
+                        <MFXButton fx:id="modifMyAccont" layoutX="388.0" layoutY="253.0" onAction="#modifMyAccont" text="Modifier" />
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="listeEleve" text="Listes Eleve">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <MFXTableView fx:id="eleveListe" layoutX="7.0" layoutY="31.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            <Tab fx:id="dossier" text="Dossier">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <MFXTableView fx:id="eleveListe1" layoutX="18.0" layoutY="25.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                        <SplitMenuButton layoutX="14.0" layoutY="8.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="74.0" text="Action">
+                           <items>
+                              <MenuItem fx:id="newFiche" mnemonicParsing="false" onAction="#onClickNewFiche" text="Nouvel Fiche" />
+                              <MenuItem fx:id="deletFiche" mnemonicParsing="false" onAction="#onClickDeletFiche" text="Supprimer Fiche" />
+                           </items>
+                        </SplitMenuButton>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+                <Tab fx:id="demande" text="Demande">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <MFXTableView fx:id="listeDemande" onMouseClicked="#onRowClick" prefHeight="521.0" prefWidth="808.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="stokck" text="Stock">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <MFXTableView fx:id="listStock" onMouseClicked="#onRowClick" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
