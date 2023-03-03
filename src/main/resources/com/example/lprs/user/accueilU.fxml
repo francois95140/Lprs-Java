@@ -20,11 +20,11 @@
                      </children></AnchorPane>
                     </content>
                 </Tab>
-                <Tab fx:id="listeEleve" text="Listes Eleve">
+                <Tab fx:id="ficheEleve" text="Listes Eleve">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <MFXTableView fx:id="eleveListe" layoutX="7.0" layoutY="31.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
+                                <MFXTableView fx:id="listEleve" layoutX="7.0" layoutY="31.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -33,7 +33,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <MFXTableView fx:id="eleveListe1" layoutX="18.0" layoutY="25.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                        <MFXTableView fx:id="listDossier" layoutX="18.0" layoutY="25.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
                         <SplitMenuButton layoutX="14.0" layoutY="8.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="74.0" text="Action">
                            <items>
                               <MenuItem fx:id="newFiche" mnemonicParsing="false" onAction="#onClickNewFiche" text="Nouvel Fiche" />
@@ -48,7 +48,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <MFXTableView fx:id="listeDemande" onMouseClicked="#onRowClick" prefHeight="521.0" prefWidth="808.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <MFXTableView fx:id="listDemande" onMouseClicked="#onRowClick" prefHeight="521.0" prefWidth="808.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                             </children>
                         </AnchorPane>
                     </content>
