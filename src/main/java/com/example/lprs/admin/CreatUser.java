@@ -1,6 +1,7 @@
 package com.example.lprs.admin;
 
 import com.example.lprs.RunApplication;
+import com.example.lprs.user.AccueilU;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -30,7 +31,6 @@ public class CreatUser implements Initializable {
 
     }
 
-
     @FXML
     private Label Erreur;
 
@@ -53,25 +53,51 @@ public class CreatUser implements Initializable {
     void validez(ActionEvent event) {
 
         if(newuser==null){
-            if (nom.getText() != null && prenom.getText() != null && email.getText() != null && role.getItems().indexOf(role.getText())+1 > 0){
+            if (!nom.getText().isBlank() && !prenom.getText().isBlank() && !email.getText().isBlank() && role.getItems().indexOf(role.getText())+1 > 0){
                 newuser = new Utilisateur(nom.getText(),prenom.getText(),email.getText(),Passewordgenerator.codeGenerate(8),role.getItems().indexOf(role.getText())+1);
                 try {
                     UtilisateurRepository userRepository = new UtilisateurRepository();
                     userRepository.inscription(newuser);
-                    RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(userconect));
+                    if (userconect.getRole() == 1){
+                        RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(userconect));
+                    }else {
+                        RunApplication.changeScene("/com/example/lprs/user/accueil",new AccueilU(userconect));
+                    }
+
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
                 System.out.println(role.getItems().indexOf(role.getText())+1);
+            }else {
+                Erreur.setText("Un ou plusieur champ sons vide ");
             }
 
+        }else {
+            newuser.setNom(nom.getText());
+            newuser.setPrenom(prenom.getText());
+            newuser.setEmail(email.getText());
+            System.out.println(newuser.getIdUtilisateur());
+            try {
+                UtilisateurRepository userRepository = new UtilisateurRepository();
+                userRepository.inscription(newuser);
+                RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(userconect));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
+    }
 
-
+    @FXML
+    void onClickBack(ActionEvent event) {
+        if (userconect.getRole() == 1){
+            RunApplication.changeScene("/com/example/lprs/admin/accueil", new Accueil(newuser));
+        }else {
+            RunApplication.changeScene("/com/example/lprs/user/accueil", new AccueilU(newuser));
+        }
     }
 
     private final String[] roles = {
-            "Administrateur","Professeur","Secretaire","Gestionair de stock"
+            "Administrateur","Professeur","Secretaire","Gestionnaire de stock"
     };
 
     @Override
