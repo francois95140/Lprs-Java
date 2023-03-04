@@ -20,7 +20,7 @@ public class FicheEtudiantRepository {
         String sql;
         PreparedStatement pstm;
         if (etudiant.getIdFiche() > 0) {
-            sql = "UPDATE `" + table + "` SET `nom`=?,`prenom`=?,`diplome`=?,`email`=?,`telephone`=?, `rue`=?, `cp`=?, `ville`=?,ref_utilisateur=? WHERE id_fiche=?";
+            sql = "UPDATE `" + table + "` SET `nom`=?,`prenom`=?,`diplome`=?,`email`=?,`telephone`=?, `rue`=?, `cp`=?, `ville`=?,`ref_utilisateur`=?,`ref_dossier`=? WHERE id_fiche=?";
             pstm = coBdd.getConnection().prepareStatement(sql);
 
             pstm.setString(1, etudiant.getNom());
@@ -33,9 +33,10 @@ public class FicheEtudiantRepository {
             pstm.setString(8, etudiant.getVille());
             pstm.setInt(9, etudiant.getRef_utilisateur());
             pstm.setInt(10, etudiant.getIdFiche());
+            pstm.setInt(11, etudiant.getRef_dossier());
             pstm.executeUpdate();
         } else {
-            sql = "INSERT INTO `" + table + "`(`nom`, `prenom`,`diplome`, `email`, `telephone`, `rue`, `cp`, `ville`,ref_utilisateur) VALUES (?,?,?,?,?,?,?,?,?)";
+            sql = "INSERT INTO `" + table + "`(`nom`, `prenom`,`diplome`, `email`, `telephone`, `rue`, `cp`, `ville`,`ref_utilisateur`) VALUES (?,?,?,?,?,?,?,?,?)";
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, etudiant.getNom());
             pstm.setString(2, etudiant.getPrenom());
@@ -65,7 +66,7 @@ public class FicheEtudiantRepository {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                fiche = new FicheEtudiant(rs.getInt("id_fiche"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("diplome"), rs.getInt("telephone"), rs.getString("rue"), rs.getInt("cp"), rs.getString("ville"),rs.getInt("ref_utilisateur"));
+                fiche = new FicheEtudiant(rs.getInt("id_fiche"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("diplome"), rs.getInt("telephone"), rs.getString("rue"), rs.getInt("cp"), rs.getString("ville"),rs.getInt("ref_utilisateur"),rs.getInt("ref_dossier"));
                 FicheEtudiant.add(fiche);
             }
         } catch (SQLException e) {
