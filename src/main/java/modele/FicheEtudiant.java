@@ -20,7 +20,9 @@ private String ville;
 private String adresse;
 private int ref_utilisateur;
 
-    public FicheEtudiant(int idFiche, String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur){
+private int ref_dossier;
+
+    public FicheEtudiant(int idFiche, String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur, int ref_dossier){
         this.idFiche = idFiche;
         this.nom = nom;
         this.prenom = prenom;
@@ -32,6 +34,7 @@ private int ref_utilisateur;
         this.ville = ville;
         this.adresse = rue+" "+ville+" "+cp;
         this.ref_utilisateur = ref_utilisateur;
+        this.ref_dossier = ref_dossier;
     }
     public FicheEtudiant( String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur){
         this.nom = nom;
@@ -124,7 +127,13 @@ private int ref_utilisateur;
         return adresse;
     }
 
+    public int getRef_dossier() {
+        return ref_dossier;
+    }
 
+    public void setRef_dossier(int ref_dossier) {
+        this.ref_dossier = ref_dossier;
+    }
 
     public void setRef_utilisateur(int ref_utilisateur) {
         this.ref_utilisateur = ref_utilisateur;
