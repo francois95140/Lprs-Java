@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
@@ -11,11 +10,6 @@
 
 <AnchorPane prefHeight="560.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane layoutX="159.0" layoutY="115.0" prefHeight="50.0" prefWidth="353.0" styleClass="pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <MFXButton layoutX="801.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onLogoutButtonClick" prefHeight="25.0" prefWidth="25.0" styleClass="image-view" text=" " AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0" />
-            </children>
-        </AnchorPane>
         <TabPane layoutX="827.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab fx:id="profil" text="Profile">
@@ -26,27 +20,29 @@
                      </children></AnchorPane>
                     </content>
                 </Tab>
-                <Tab fx:id="listeEleve" text="Listes Eleve">
+                <Tab fx:id="fiche" text="Fiche">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <MFXTableView fx:id="eleveListe" layoutX="7.0" layoutY="31.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
-                        <SplitMenuButton layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="Action">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Dossier Inscription" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </SplitMenuButton>
-                        <MFXComboBox fx:id="select" layoutX="273.0" layoutY="-2.0" prefHeight="41.0" prefWidth="119.0" />
+                                <MFXTableView fx:id="listFiche" layoutX="7.0" layoutY="31.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
+            <Tab fx:id="dossier" text="Dossier">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <MFXTableView fx:id="listDossier" layoutX="18.0" layoutY="25.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab fx:id="personnel" text="Personnel">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <MFXTableView fx:id="eleveListe1" layoutX="18.0" layoutY="25.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                        <MFXTableView fx:id="listPersonnel" layoutX="18.0" layoutY="25.0" onMouseClicked="#onRowClick" prefHeight="492.0" prefWidth="807.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
                         <SplitMenuButton layoutX="14.0" layoutY="8.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="74.0" text="Action">
                            <items>
                               <MenuItem fx:id="newUser" mnemonicParsing="false" onAction="#onClickNewUser" text="Nouvel utilisateur" />
@@ -75,6 +71,15 @@
                         </AnchorPane>
                     </content>
                 </Tab>
+            <Tab text="Logs">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <MFXTableView fx:id="listLogs" layoutX="275.0" layoutY="62.0" prefHeight="462.0" prefWidth="558.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             </tabs>
         </TabPane>
     </children>
