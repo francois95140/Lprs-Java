@@ -17,6 +17,7 @@ private String rue;
 
 private int cp;
 private String ville;
+private String adresse;
 private int ref_utilisateur;
 
     public FicheEtudiant(int idFiche, String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur){
@@ -29,6 +30,7 @@ private int ref_utilisateur;
         this.rue = rue;
         this.cp = cp;
         this.ville = ville;
+        this.adresse = rue+" "+ville+" "+cp;
         this.ref_utilisateur = ref_utilisateur;
     }
     public FicheEtudiant( String nom, String prenom, String email, String diplome, int telephone, String rue, int cp, String ville, int ref_utilisateur){
@@ -118,6 +120,11 @@ private int ref_utilisateur;
     public int getRef_utilisateur() {
         return ref_utilisateur;
     }
+    public String getAdresse() {
+        return adresse;
+    }
+
+
 
     public void setRef_utilisateur(int ref_utilisateur) {
         this.ref_utilisateur = ref_utilisateur;
