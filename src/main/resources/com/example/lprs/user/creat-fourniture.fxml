@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="461.0" style="-fx-background-color: #9C9C9C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="580.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="-1.0" layoutY="271.0" prefHeight="58.0" prefWidth="420.0" text="CREATION FOURNITURE" textFill="WHITE" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="271.0">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="420.0" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MFXButton fx:id="validee" layoutX="238.0" layoutY="360.0" onAction="#validee" prefHeight="34.0" prefWidth="105.0" text="Validée" AnchorPane.bottomAnchor="205.60000000000002" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="238.0" />
+            <Label fx:id="Erreur" alignment="CENTER" layoutX="75.0" layoutY="65.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="65.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <MFXTextField fx:id="quantite" floatingText="Quantité" layoutX="217.0" layoutY="260.0" prefHeight="50.0" prefWidth="146.0" promptText="2" AnchorPane.bottomAnchor="289.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="217.0" AnchorPane.topAnchor="260.0" />
+            <FontIcon fill="WHITE" iconColor="WHITE" iconLiteral="fas-arrow-circle-left" iconSize="50" layoutX="36.0" layoutY="566.0" onMouseClicked="#retoure" text="" wrappingWidth="46.400054931640625" />
+            <MFXTextField fx:id="nom" floatingText="Nom" layoutX="217.0" layoutY="180.0" prefHeight="50.0" prefWidth="146.0" promptText="Gomme" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
