@@ -11,6 +11,7 @@ import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
@@ -83,6 +84,9 @@ public class AccueilU implements Initializable {
     private MenuItem newUser;
 
     @FXML
+    private Button demandeFourniture;
+
+    @FXML
     private Tab personnel;
 
     @FXML
@@ -94,6 +98,11 @@ public class AccueilU implements Initializable {
     @FXML
     void modifMyAccont(ActionEvent event) {
         RunApplication.changeScene("/com/example/lprs/admin/creat-user",new CreatUser(utilisateur,utilisateur));
+    }
+
+    @FXML
+    void fairDemande(ActionEvent event) {
+        RunApplication.changeScene("/com/example/lprs/user/DemandeFourniture",new DemandeFourniture(utilisateur));
     }
 
     @FXML
@@ -219,8 +228,8 @@ public class AccueilU implements Initializable {
         } else if (utilisateur.getRole()==4) {
            ficheEleve.setDisable(true);
            dossier.setDisable(true);
-           supprimerStock.setVisible(true);
-           modifierStock.setVisible(true);
+           supprimerStock.setVisible(false);
+           modifierStock.setVisible(false);
            setupFourniture();
         }
 
