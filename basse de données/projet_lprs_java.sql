@@ -86,6 +86,19 @@ CREATE TABLE IF NOT EXISTS `est_lie` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `logs`
+--
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE IF NOT EXISTS `logs` (
+ `id_logs` int NOT NULL AUTO_INCREMENT,
+ `ref_compte` int NOT NULL,
+ `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `adresse_ip` varchar(200) NOT NULL,
+ PRIMARY KEY (`id_logs`),
+ KEY `fk_logs_utilisateur` (`ref_compte`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
 -- Structure de la table `fiche_etudiant`
 --
 
@@ -182,7 +195,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `prenom` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   `mdp` varchar(15) NOT NULL,
-  `role` tinyint(3) NOT NULL,
+  `role` tinyint(4) NOT NULL,
+  `ref_admin` int(11) NOT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -197,6 +211,10 @@ INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `email`, `mdp`, `role`) V
 -- Contraintes pour les tables déchargées
 --
 
+
+
+ALTER TABLE `logs`
+    ADD CONSTRAINT `fk_logs_utilisateur` FOREIGN KEY (`ref_compte`) REFERENCES `utilisateur` (`id_user`);
 --
 -- Contraintes pour la table `demande_fournitures`
 --
