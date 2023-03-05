@@ -54,7 +54,7 @@ public class CreatUser implements Initializable {
 
         if(newuser==null){
             if (!nom.getText().isBlank() && !prenom.getText().isBlank() && !email.getText().isBlank() && role.getItems().indexOf(role.getText())+1 > 0){
-                newuser = new Utilisateur(nom.getText(),prenom.getText(),email.getText(),Passewordgenerator.codeGenerate(8),role.getItems().indexOf(role.getText())+1);
+                newuser = new Utilisateur(nom.getText(),prenom.getText(),email.getText(),Passewordgenerator.codeGenerate(8),role.getItems().indexOf(role.getText())+1,userconect.getIdUtilisateur());
                 try {
                     UtilisateurRepository userRepository = new UtilisateurRepository();
                     userRepository.inscription(newuser);
