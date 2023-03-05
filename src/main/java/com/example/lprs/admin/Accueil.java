@@ -11,9 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import modele.FicheEtudiant;
+import modele.Fourniture;
 import modele.Logs;
 import modele.Utilisateur;
 import repository.FicheEtudiantRepository;
+import repository.FournitureRepository;
 import repository.LogsRepository;
 import repository.UtilisateurRepository;
 
@@ -32,6 +34,7 @@ public class Accueil implements Initializable {
     }
 
     FicheEtudiantRepository ficherepo = new FicheEtudiantRepository();
+    FournitureRepository fourniturerepo = new FournitureRepository();
     UtilisateurRepository userrepo = new UtilisateurRepository();
     LogsRepository logsrepo = new LogsRepository();
 
@@ -57,7 +60,7 @@ public class Accueil implements Initializable {
     private MFXTableView<Utilisateur> listPersonnel;
 
     @FXML
-    private MFXTableView<?> listStock;
+    private MFXTableView<Fourniture> listStock;
 
     @FXML
     private MFXTableView<?> listeDemande;
@@ -210,9 +213,36 @@ public class Accueil implements Initializable {
 
     }
 
+    private void setupFourniture(){
+        MFXTableColumn<Fourniture> numerotColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getIdFourniture));
+        MFXTableColumn<Fourniture> nomColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getNom));
+        MFXTableColumn<Fourniture> quantiteColum = new MFXTableColumn<>("Email",true, Comparator.comparing(Fourniture::getStock));
+
+        numerotColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getIdFourniture));
+        nomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getNom));
+        quantiteColum.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getStock));
+
+
+        numerotColumn.setStyle("-fx-pref-width: 100");
+        nomColumn.setStyle("-fx-pref-width: 100");
+        quantiteColum.setStyle("-fx-pref-width: 150");
+
+
+        listStock.getTableColumns().add(numerotColumn);
+        listStock.getTableColumns().add(nomColumn);
+        listStock.getTableColumns().add(quantiteColum);
+
+        listStock.getFilters().add(new IntegerFilter<>("Nom", Fourniture::getIdFourniture));
+        listStock.getFilters().add(new StringFilter<>("Prénom", Fourniture::getNom));
+        listStock.getFilters().add(new IntegerFilter<>("Email", Fourniture::getStock));
+
+        listStock.getItems().addAll(fourniturerepo.getfourniture());
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setupFourniture();
         setupPersonnel();
         setupFiche();
         setupLogs();

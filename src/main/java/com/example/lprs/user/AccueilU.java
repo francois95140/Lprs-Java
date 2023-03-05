@@ -15,8 +15,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import modele.FicheEtudiant;
+import modele.Fourniture;
 import modele.Utilisateur;
 import repository.FicheEtudiantRepository;
+import repository.FournitureRepository;
 
 import java.net.URL;
 import java.util.Comparator;
@@ -25,8 +27,9 @@ import java.util.ResourceBundle;
 public class AccueilU implements Initializable {
 
     FicheEtudiantRepository ficherepo = new FicheEtudiantRepository();
+    FournitureRepository fourniturerepo = new FournitureRepository();
 
-    private Utilisateur utilisateur;
+    private final Utilisateur utilisateur;
     private FicheEtudiant ficheEtudiant;
 
     public AccueilU(Utilisateur u) {
@@ -49,7 +52,19 @@ public class AccueilU implements Initializable {
     private Tab ficheEleve;
 
     @FXML
-    private MFXTableView<String> listStock;
+    private MFXButton modifierStock;
+
+    @FXML
+    private MFXButton supprimerStock;
+
+    @FXML
+    private MFXButton ajouterStock;
+
+    @FXML
+    private MFXButton creeDossier;
+
+    @FXML
+    private MFXTableView<Fourniture> listStock;
 
     @FXML
     private MFXTableView<String> listDemande;
@@ -83,7 +98,13 @@ public class AccueilU implements Initializable {
 
     @FXML
     void onRowClick(MouseEvent event) {
+        System.out.println(listEleve.getSelectionModel().getSelection());
+        System.out.println(ficheEtudiant.getEmail());
 
+        /*this.ficheEtudiant = listEleve.getSelectionModel().getSelection();
+        if (ficheEtudiant!=null && ficheEtudiant.getRef_dossier()==0){
+            creeDossier.setVisible(true);
+        }*/
     }
 
     @FXML
@@ -94,6 +115,28 @@ public class AccueilU implements Initializable {
     @FXML
     void onClickNewFiche(ActionEvent event) {
         RunApplication.changeScene("/com/example/lprs/user/FicheEtudiant",new FicheControler(utilisateur));
+    }
+
+
+    @FXML
+    void onClickAjouterStock(ActionEvent event) {
+        RunApplication.changeScene("/com/example/lprs/user/creat-fourniture",new CreatFourniture(utilisateur));
+    }
+
+    @FXML
+    void onClickCreeDossier(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void onClickModifierStock(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickSupprimerStock(ActionEvent event) {
+
     }
 
     private void setupFiche() {
@@ -137,9 +180,36 @@ public class AccueilU implements Initializable {
 
     }
 
+    private void setupFourniture(){
+        MFXTableColumn<Fourniture> numerotColumn = new MFXTableColumn<>("Numerot", true, Comparator.comparing(Fourniture::getIdFourniture));
+        MFXTableColumn<Fourniture> nomColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getNom));
+        MFXTableColumn<Fourniture> quantiteColum = new MFXTableColumn<>("Qantité",true, Comparator.comparing(Fourniture::getStock));
+
+        numerotColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getIdFourniture));
+        nomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getNom));
+        quantiteColum.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getStock));
+
+
+        numerotColumn.setStyle("-fx-pref-width: 100");
+        nomColumn.setStyle("-fx-pref-width: 100");
+        quantiteColum.setStyle("-fx-pref-width: 150");
+
+
+        listStock.getTableColumns().add(numerotColumn);
+        listStock.getTableColumns().add(nomColumn);
+        listStock.getTableColumns().add(quantiteColum);
+
+        listStock.getFilters().add(new IntegerFilter<>("Numerot", Fourniture::getIdFourniture));
+        listStock.getFilters().add(new StringFilter<>("Nom", Fourniture::getNom));
+        listStock.getFilters().add(new IntegerFilter<>("Qantité", Fourniture::getStock));
+
+        listStock.getItems().addAll(fourniturerepo.getfourniture());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (utilisateur.getRole()==2){
+            creeDossier.setVisible(false);
             demande.setDisable(true);
             stokck.setDisable(true);
             setupFiche();
@@ -149,6 +219,9 @@ public class AccueilU implements Initializable {
         } else if (utilisateur.getRole()==4) {
            ficheEleve.setDisable(true);
            dossier.setDisable(true);
+           supprimerStock.setVisible(true);
+           modifierStock.setVisible(true);
+           setupFourniture();
         }
 
     }
