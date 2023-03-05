@@ -26,12 +26,13 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public Utilisateur(String nom, String prenom, String email,String mdp ,int role) {
+    public Utilisateur(String nom, String prenom, String email, String mdp , int role, int ref_admin) {
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
         this.role = role;
         this.mdp = mdp;
+        this.ref_admin =ref_admin;
     }
 
     public int getIdUtilisateur() {
