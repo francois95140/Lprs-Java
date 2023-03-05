@@ -15,6 +15,10 @@ public class FournitureRepository {
     private Database coBdd;
     private String table = "Fourniture";
 
+    public FournitureRepository(){
+        coBdd = new Database();
+    }
+
     public Fourniture inscription(Fourniture fourniture) throws SQLException {
         String sql;
         PreparedStatement pstm;
@@ -30,12 +34,11 @@ public class FournitureRepository {
         }
 //insert
         else {
-            sql = "INSERT INTO `" + table + "`( `nom`, `stock`, `fourniseur`) VALUES (?,?,?)";
+            sql = "INSERT INTO `" + table + "`( `nom`, `quantite`) VALUES (?,?)";
 
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, fourniture.getNom());
             pstm.setInt(2, fourniture.getStock());
-            pstm.setString(3, fourniture.getFournisseur());
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
@@ -56,7 +59,7 @@ public class FournitureRepository {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                fourniture = new Fourniture(rs.getInt("idFourniture"), rs.getString("nom"), rs.getInt("stock"), rs.getString("fournisseur"));
+                fourniture = new Fourniture(rs.getInt("id_fourniture"), rs.getString("nom"), rs.getInt("quantite"));
                 Fournitures.add(fourniture);
             }
         } catch (SQLException e) {

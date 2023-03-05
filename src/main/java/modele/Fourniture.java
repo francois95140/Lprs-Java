@@ -5,21 +5,15 @@ private int idFourniture;
 private String nom;
 private int stock;
 private String fournisseur;
-    private int code;
 
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-    public Fourniture(int idFourniture, String nom, int stock, String fournisseur){
+    public Fourniture(int idFourniture, String nom, int stock){
         this.idFourniture = idFourniture;
         this.nom = nom;
         this.stock = stock;
-        this.fournisseur = fournisseur;
+    }
+    public Fourniture(String nom, int stock){
+        this.nom = nom;
+        this.stock = stock;
     }
 
     public int getIdFourniture() {
