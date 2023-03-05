@@ -80,21 +80,26 @@ public class FicheControler implements Initializable {
                 Erreur.setText("Un ou plusieur champ sons vide ");
             }
         }else {
-            ficheselect.setNom(nom.getText());
-            ficheselect.setPrenom(prenom.getText());
-            ficheselect.setEmail(email.getText());
-            ficheselect.setDiplome(diplome.getText());
-            ficheselect.setTelephone(Integer.parseInt(tel.getText()));
-            ficheselect.setRue(rue.getText());
-            ficheselect.setCp(Integer.parseInt(cp.getText()));
-            ficheselect.setVille(ville.getText());
-            ficheselect.setRef_utilisateur(userconect.getIdUtilisateur());
-            try {
-                FicheEtudiantRepository fiche = new FicheEtudiantRepository();
-                fiche.save(ficheselect);
-                RunApplication.changeScene("/com/example/lprs/user/accueil",new AccueilU(userconect));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if (!nom.getText().isBlank() && !prenom.getText().isBlank()  && !email.getText().isBlank() && !diplome.getText().isBlank() && !tel.getText().isBlank() && !rue.getText().isBlank() && !cp.getText().isBlank() && !ville.getText().isBlank()){
+                ficheselect.setNom(nom.getText());
+                ficheselect.setPrenom(prenom.getText());
+                ficheselect.setEmail(email.getText());
+                ficheselect.setDiplome(diplome.getText());
+                ficheselect.setTelephone(Integer.parseInt(tel.getText()));
+                ficheselect.setRue(rue.getText());
+                ficheselect.setCp(Integer.parseInt(cp.getText()));
+                ficheselect.setVille(ville.getText());
+                ficheselect.setRef_utilisateur(userconect.getIdUtilisateur());
+                try {
+                    FicheEtudiantRepository fiche = new FicheEtudiantRepository();
+                    fiche.save(ficheselect);
+                    RunApplication.changeScene("/com/example/lprs/user/accueil",new AccueilU(userconect));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }else {
+                System.out.println("vide");
+                Erreur.setText("Un ou plusieur champ sons vide ");
             }
         }
     }
