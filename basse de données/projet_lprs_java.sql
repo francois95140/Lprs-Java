@@ -45,9 +45,11 @@ CREATE TABLE IF NOT EXISTS `demande_fournitures` (
   `id_demande` int(11) NOT NULL AUTO_INCREMENT,
   `nom_fourniture` varchar(30) NOT NULL,
   `quantite_demander` int(40) NOT NULL,
-  `ref_utilisateur` int(11) NOT NULL,
+  `ref_prof` int(11) NOT NULL,
+  `ref_gestionaire` int(11) NULL,
   PRIMARY KEY (`id_demande`),
-  KEY `fk_demande_user` (`ref_utilisateur`)
+  KEY `fk_demande_prof` (`ref_prof`),
+  KEY `fk_demande_prof` (`ref_gestionaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -145,10 +147,12 @@ CREATE TABLE IF NOT EXISTS `rendez-vous` (
   `date` date NOT NULL,
   `heure` time NOT NULL,
   `ref_salle` int(3) NOT NULL,
-  `ref_utilisateur` int(11) NOT NULL,
+  `ref_prof` int(11) NOT NULL,
+  `ref_dossier` int(11) NOT NULL,
   PRIMARY KEY (`id_rdv`),
-  KEY `fk_rdv_user` (`ref_utilisateur`),
-  KEY `fk-rdv_salle` (`ref_salle`)
+  KEY `fk_rdv_prof` (`ref_prof`),
+  KEY `fk-rdv_salle` (`ref_salle`),
+  KEY `fk-rdv_dossier` (`ref_dossier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -196,12 +200,15 @@ INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `email`, `mdp`, `role`) V
 --
 -- Contraintes pour la table `demande_fournitures`
 --
+
 ALTER TABLE `demande_fournitures`
-  ADD CONSTRAINT `fk_demande_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk_demande_prof` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`),
+  ADD CONSTRAINT `fk_demande_gestionaire` FOREIGN KEY (`ref_gestionaire`) REFERENCES `utilisateur` (`id_user`);
 
 --
 -- Contraintes pour la table `dossier_inscription`
 --
+
 ALTER TABLE `dossier_inscription`
   ADD CONSTRAINT `fk_dossier_etudiant` FOREIGN KEY (`ref_fiche`) REFERENCES `fiche_etudiant` (`id_fiche`);
 
@@ -216,7 +223,11 @@ ALTER TABLE `fiche_etudiant`
 --
 ALTER TABLE `rendez-vous`
   ADD CONSTRAINT `fk-rdv_salle` FOREIGN KEY (`ref_salle`) REFERENCES `salle` (`id_salle`),
-  ADD CONSTRAINT `fk_rdv_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk-rdv_dossier` FOREIGN KEY (`ref_dossier`) REFERENCES `dossier_inscription` (`id_dossier`),
+  ADD CONSTRAINT `fk_rdv_prof` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`);
+
+ALTER TABLE `utilisateur`
+    ADD CONSTRAINT `fk_utilisateur_admin` FOREIGN KEY (`ref_admin`) REFERENCES `utilisateur`  (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

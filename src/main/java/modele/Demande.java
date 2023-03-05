@@ -6,21 +6,21 @@ public class Demande {
     private String nomFourniture;
     private int quantiter;
     private int refProf;
-    private int refGestionair;
+    private int refGestionaire;
 
-    public Demande(int idDemande,String nomFourniture,int quantiter,int refProf,int refGestionair){
+    public Demande(int idDemande,String nomFourniture,int quantiter,int refProf,int refGestionaire){
         this.idDemande=idDemande;
         this.nomFourniture=nomFourniture;
         this.quantiter=quantiter;
         this.refProf=refProf;
-        this.refGestionair=refGestionair;
+        this.refGestionaire=refGestionaire;
     }
 
-    public Demande(String nomFourniture,int quantiter,int refProf,int refGestionair){
+    public Demande(String nomFourniture,int quantiter,int refProf,int refGestionaire){
         this.nomFourniture=nomFourniture;
         this.quantiter=quantiter;
         this.refProf=refProf;
-        this.refGestionair=refGestionair;
+        this.refGestionaire=refGestionaire;
     }
 
     public Demande(String nomFourniture,int quantiter,int refProf){
@@ -61,11 +61,11 @@ public class Demande {
         this.refProf = refProf;
     }
 
-    public int getRefGestionair() {
-        return refGestionair;
+    public int getrefGestionaire() {
+        return refGestionaire;
     }
 
-    public void setRefGestionair(int refGestionair) {
-        this.refGestionair = refGestionair;
+    public void setrefGestionaire(int refGestionaire) {
+        this.refGestionaire = refGestionaire;
     }
 }

@@ -20,26 +20,26 @@ public class RendezVousRepository {
         String sql;
         PreparedStatement pstm;
         if (rendezVous.getId_RendezVous() > 0) {
-            sql = "UPDATE `" + table + "` SET `heure`=?,`date`=?,`salle`=?,`RefUtilisateur`=?,`RefEleve`=? WHERE id_RendezVous=?";
+            sql = "UPDATE `" + table + "` SET `heure`=?,`date`=?,`salle`=?,`ref_prof`=?,`ref_dossier`=? WHERE id_RendezVous=?";
             pstm = coBdd.getConnection().prepareStatement(sql);
             pstm.setString(1, rendezVous.getDate());
             pstm.setString(2, rendezVous.getHeure());
             pstm.setString(3, rendezVous.getSalle());
-            pstm.setString(4, rendezVous.getRefUtilisateur());
-            pstm.setInt(5, rendezVous.getRefEleve());
+            pstm.setString(4, rendezVous.getref_prof());
+            pstm.setInt(5, rendezVous.getref_dossier());
             pstm.executeUpdate();
 
         }
 //insert
         else {
-            sql = "INSERT INTO `" + table + "`( `heure`, `date`, `salle`,`RefUtilisateur`,`RefEleve`) VALUES (?,?,?,?,?)";
+            sql = "INSERT INTO `" + table + "`( `heure`, `date`, `salle`,`ref_prof`,`ref_dossier`) VALUES (?,?,?,?,?)";
 
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, rendezVous.getDate());
             pstm.setString(2, rendezVous.getHeure());
             pstm.setString(3, rendezVous.getSalle());
-            pstm.setString(4, rendezVous.getRefUtilisateur());
-            pstm.setInt(5, rendezVous.getRefEleve());
+            pstm.setString(4, rendezVous.getref_prof());
+            pstm.setInt(5, rendezVous.getref_dossier());
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {

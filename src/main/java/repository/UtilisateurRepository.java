@@ -34,7 +34,7 @@ public class UtilisateurRepository {
         }
 //insert
         else {
-            sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `email`,`mdp`,`role`) VALUES (?,?,?,md5(?),?)";
+            sql = "INSERT INTO `"+table+"`( `nom`, `prenom`, `email`,`mdp`,`role`,`ref_admin`) VALUES (?,?,?,md5(?),?,?)";
 
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, utilisateur.getNom());
@@ -42,6 +42,7 @@ public class UtilisateurRepository {
             pstm.setString(3, utilisateur.getEmail());
             pstm.setString(4, utilisateur.getMdp());
             pstm.setString(5, String.valueOf(utilisateur.getRole()));
+            pstm.setString(6, String.valueOf(utilisateur.getRef_admin()));
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if(rs.next())

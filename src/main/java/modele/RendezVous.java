@@ -7,19 +7,19 @@ public class RendezVous {
         private String date;
         private String heure;
         private String salle;
-        private String RefUtilisateur;
-        private int RefEleve;
+        private String ref_prof;
+        private int ref_dossier;
 
 
 
 
-    public RendezVous(int id_rdv, String date, String heure, String salle, String RefUtilisateur, int RefEleve) {
+    public RendezVous(int id_rdv, String date, String heure, String salle, String ref_prof, int ref_dossier) {
             this.id_RendezVous = id_rdv;
             this.date = date;
             this.heure = heure;
             this.salle = salle;
-            this.RefUtilisateur = RefUtilisateur;
-            this.RefEleve = RefEleve;
+            this.ref_prof = ref_prof;
+            this.ref_dossier = ref_dossier;
         }
             public int getId_RendezVous() {
                 return id_RendezVous;
@@ -52,19 +52,19 @@ public class RendezVous {
             this.salle = salle;
         }
 
-        public String getRefUtilisateur() {
-            return RefUtilisateur;
+        public String getref_prof() {
+            return ref_prof;
         }
 
-        public void setRefUtilisateur(String RefUtilisateur) {
-            this.RefUtilisateur = RefUtilisateur;
+        public void setref_prof(String ref_prof) {
+            this.ref_prof = ref_prof;
         }
-         public int getRefEleve() {
-         return RefEleve;
+         public int getref_dossier() {
+         return ref_dossier;
     }
 
-         public void setRefEleve(int refEleve) {
-           RefEleve = refEleve;
+         public void setref_dossier(int ref_dossier) {
+           ref_dossier = ref_dossier;
     }
 
     }

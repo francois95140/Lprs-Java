@@ -8,6 +8,7 @@ public class Utilisateur {
     private Integer role;
     private String mdp;
     private String code;
+    private int ref_admin;
 
     public Utilisateur(int idUtilisateur, String nom, String prenom, String email, String mdp, int role) {
         this.idUtilisateur = idUtilisateur;
@@ -16,6 +17,7 @@ public class Utilisateur {
         this.email = email;
         this.role = role;
         this.mdp = mdp;
+
     }
 
     public Utilisateur(int idUtilisateur, String nom, String prenom, String email, int role) {
@@ -89,5 +91,13 @@ public class Utilisateur {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public int getRef_admin() {
+        return ref_admin;
+    }
+
+    public void setRef_admin(int ref_admin) {
+        this.ref_admin = ref_admin;
     }
 }
