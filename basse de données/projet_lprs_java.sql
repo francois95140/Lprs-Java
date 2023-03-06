@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `demande_fournitures` (
   `ref_gestionaire` int(11) NULL,
   PRIMARY KEY (`id_demande`),
   KEY `fk_demande_prof` (`ref_prof`),
-  KEY `fk_demande_prof` (`ref_gestionaire`)
+  KEY `fk_demande_gestionaire` (`ref_gestionaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
