@@ -22,22 +22,22 @@ public class FicheFournitureRepository {
         String sql;
         PreparedStatement pstm;
         if (fiche_fourniture.getId_fiche_fourniture() > 0) {
-            sql = "UPDATE `" + table + "` SET `nom`=?,`prix`=?,`quantite`=? WHERE getId_fiche_fourniture=?";
+            sql = "UPDATE `" + table + "` SET `ref_fournisseur`=?,`prix`=?,`ref_fourniture`=? WHERE getId_fiche_fourniture=?";
             pstm = coBDD.getConnection().prepareStatement(sql);
-            pstm.setString(1, fiche_fourniture.getnom());
+            pstm.setInt(1, fiche_fourniture.getRef_fourniture());
             pstm.setDouble(2, fiche_fourniture.getprix());
-            pstm.setInt(3, fiche_fourniture.getquantite());
+            pstm.setInt(3, fiche_fourniture.getRef_fournisseur());
 
             pstm.executeUpdate();
 
         }
 //insert
         else {
-            sql = "INSERT INTO `" + table + "`(`nom`, `prix`, `quantite`) VALUES(?,?,?)";
+            sql = "INSERT INTO `" + table + "`(`ref_fournisseur`, `prix`, `ref_fourniture`) VALUES(?,?,?)";
             pstm = coBDD.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, fiche_fourniture.getnom());
+            pstm.setInt(1, fiche_fourniture.getRef_fourniture());
             pstm.setDouble(2, fiche_fourniture.getprix());
-            pstm.setInt(3, fiche_fourniture.getquantite());
+            pstm.setInt(3, fiche_fourniture.getRef_fournisseur());
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
@@ -58,7 +58,7 @@ public class FicheFournitureRepository {
                 pstm = coBDD.getConnection().prepareStatement(sql);
                 ResultSet rs = pstm.executeQuery();
                 while (rs.next()) {
-                    fiche_fourniture = new FicheFourniture(rs.getInt("id_fiche_fourniture"), rs.getString("nom"), rs.getDouble("prix"), rs.getInt("quantite"));
+                    fiche_fourniture = new FicheFourniture(rs.getInt("id_fiche_fourniture"), rs.getInt("ref_fournisseur"), rs.getDouble("prix"), rs.getInt("ref_fourniture"));
                     ficheFournitures.add(fiche_fourniture);
                 }
             } catch (SQLException e) {
