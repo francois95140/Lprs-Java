@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `nom` varchar(40) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `mdp` varchar(15) NOT NULL,
+  `mdp` varchar(200) NOT NULL,
   `role` tinyint(4) NOT NULL,
   `ref_admin` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
