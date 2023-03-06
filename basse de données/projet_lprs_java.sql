@@ -244,8 +244,7 @@ ALTER TABLE `rendez-vous`
   ADD CONSTRAINT `fk-rdv_dossier` FOREIGN KEY (`ref_dossier`) REFERENCES `dossier_inscription` (`id_dossier`),
   ADD CONSTRAINT `fk_rdv_prof` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`);
 
-ALTER TABLE `utilisateur`
-    ADD CONSTRAINT `fk_utilisateur_admin` FOREIGN KEY (`ref_admin`) REFERENCES `utilisateur`  (`id_user`);
+ALTER TABLE `projet_lprs_java`.`utilisateur` ADD INDEX `fk_utilisateur_admin` (`ref_admin`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
