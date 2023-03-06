@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 06 fév. 2023 à 10:36
+-- Généré le : lun. 06 mars 2023 à 09:45
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `concerne`
---
-
-DROP TABLE IF EXISTS `concerne`;
-CREATE TABLE IF NOT EXISTS `concerne` (
-  `ref_fiche_fourniture` int(11) NOT NULL,
-  `ref_demande` int(11) NOT NULL,
-  KEY `fk_concerne_demande` (`ref_demande`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `demande_fournitures`
 --
 
@@ -46,7 +33,8 @@ CREATE TABLE IF NOT EXISTS `demande_fournitures` (
   `nom_fourniture` varchar(30) NOT NULL,
   `quantite_demander` int(40) NOT NULL,
   `ref_prof` int(11) NOT NULL,
-  `ref_gestionaire` int(11) NULL,
+  `ref_gestionaire` int(11) DEFAULT NULL,
+  `raison` varchar(20) NOT NULL,
   PRIMARY KEY (`id_demande`),
   KEY `fk_demande_prof` (`ref_prof`),
   KEY `fk_demande_gestionaire` (`ref_gestionaire`)
@@ -71,32 +59,6 @@ CREATE TABLE IF NOT EXISTS `dossier_inscription` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `est_lie`
---
-
-DROP TABLE IF EXISTS `est_lie`;
-CREATE TABLE IF NOT EXISTS `est_lie` (
-  `ref_fiche_fourniture` int(11) NOT NULL,
-  `ref_fourniture` int(11) NOT NULL,
-  KEY `fk_lie_fourniture` (`ref_fourniture`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `logs`
---
-DROP TABLE IF EXISTS `logs`;
-CREATE TABLE IF NOT EXISTS `logs` (
- `id_logs` int NOT NULL AUTO_INCREMENT,
- `ref_compte` int NOT NULL,
- `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
- `adresse_ip` varchar(200) NOT NULL,
- PRIMARY KEY (`id_logs`),
- KEY `fk_logs_utilisateur` (`ref_compte`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Structure de la table `fiche_etudiant`
@@ -127,11 +89,29 @@ CREATE TABLE IF NOT EXISTS `fiche_etudiant` (
 DROP TABLE IF EXISTS `fiche_fourniture`;
 CREATE TABLE IF NOT EXISTS `fiche_fourniture` (
   `id_fiche_fourniture` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(20) NOT NULL,
   `prix` varchar(20) NOT NULL,
-  `quantite_fourniture` int(30) NOT NULL,
-  PRIMARY KEY (`id_fiche_fourniture`)
+  `ref_fournisseur` int(11) NOT NULL,
+  `ref_fourniture` int(11) NOT NULL,
+  PRIMARY KEY (`id_fiche_fourniture`),
+  KEY `fk_fiche_fourniture_fournisseur` (`ref_fournisseur`),
+  KEY `fk_fiche_fourniture_fourniture` (`ref_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fournisseur`
+--
+
+DROP TABLE IF EXISTS `fournisseur`;
+CREATE TABLE IF NOT EXISTS `fournisseur` (
+  `id_fournisseur` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_entreprise` varchar(20) NOT NULL,
+  `rue` varchar(20) NOT NULL,
+  `cp` int(10) NOT NULL,
+  `ville` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_fournisseur`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -144,8 +124,23 @@ CREATE TABLE IF NOT EXISTS `fourniture` (
   `id_fourniture` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
   `stock` int(20) NOT NULL,
-  `fourniseur` varchar(20) NOT NULL,
   PRIMARY KEY (`id_fourniture`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id_logs` int(11) NOT NULL AUTO_INCREMENT,
+  `ref_compte` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `adresse_ip` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_logs`),
+  KEY `fk_logs_utilisateur` (`ref_compte`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -197,36 +192,32 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `mdp` varchar(15) NOT NULL,
   `role` tinyint(4) NOT NULL,
   `ref_admin` int(11) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id_user`),
+  KEY `fk_utilisateur_admin` (`ref_admin`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `email`, `mdp`, `role`) VALUES
-(1, 'Louisy', 'arnaud', 'a.louisy@lprs.fr', '', 1);
+INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `email`, `mdp`, `role`, `ref_admin`) VALUES
+(1, 'Louisy', 'arnaud', 'a.louisy@lprs.fr', '', 1, 0),
+(2, 'Benzeki', 'Talal', 'finito@gmail.com', 'azerty', 1, 1);
 
 --
 -- Contraintes pour les tables déchargées
 --
 
-
-
-ALTER TABLE `logs`
-    ADD CONSTRAINT `fk_logs_utilisateur` FOREIGN KEY (`ref_compte`) REFERENCES `utilisateur` (`id_user`);
 --
 -- Contraintes pour la table `demande_fournitures`
 --
-
 ALTER TABLE `demande_fournitures`
-  ADD CONSTRAINT `fk_demande_prof` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`),
-  ADD CONSTRAINT `fk_demande_gestionaire` FOREIGN KEY (`ref_gestionaire`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk_demande_gestionaire` FOREIGN KEY (`ref_gestionaire`) REFERENCES `utilisateur` (`id_user`),
+  ADD CONSTRAINT `fk_demande_prof` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`);
 
 --
 -- Contraintes pour la table `dossier_inscription`
 --
-
 ALTER TABLE `dossier_inscription`
   ADD CONSTRAINT `fk_dossier_etudiant` FOREIGN KEY (`ref_fiche`) REFERENCES `fiche_etudiant` (`id_fiche`);
 
@@ -237,14 +228,24 @@ ALTER TABLE `fiche_etudiant`
   ADD CONSTRAINT `fk_etudiant_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
 
 --
+-- Contraintes pour la table `fiche_fourniture`
+--
+ALTER TABLE `fiche_fourniture`
+  ADD CONSTRAINT `fiche_fourniture_ibfk_1` FOREIGN KEY (`ref_fourniture`) REFERENCES `fourniture` (`id_fourniture`);
+
+--
+-- Contraintes pour la table `logs`
+--
+ALTER TABLE `logs`
+  ADD CONSTRAINT `fk_logs_utilisateur` FOREIGN KEY (`ref_compte`) REFERENCES `utilisateur` (`id_user`);
+
+--
 -- Contraintes pour la table `rendez-vous`
 --
 ALTER TABLE `rendez-vous`
-  ADD CONSTRAINT `fk-rdv_salle` FOREIGN KEY (`ref_salle`) REFERENCES `salle` (`id_salle`),
   ADD CONSTRAINT `fk-rdv_dossier` FOREIGN KEY (`ref_dossier`) REFERENCES `dossier_inscription` (`id_dossier`),
+  ADD CONSTRAINT `fk-rdv_salle` FOREIGN KEY (`ref_salle`) REFERENCES `salle` (`id_salle`),
   ADD CONSTRAINT `fk_rdv_prof` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`);
-
-ALTER TABLE `projet_lprs_java`.`utilisateur` ADD INDEX `fk_utilisateur_admin` (`ref_admin`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
