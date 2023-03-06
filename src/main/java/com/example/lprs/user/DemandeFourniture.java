@@ -36,6 +36,9 @@ public class DemandeFourniture implements Initializable {
     private Label Erreur;
 
     @FXML
+    private MFXTextField raisons;
+
+    @FXML
     private MFXTextField quantite;
 
     @FXML
