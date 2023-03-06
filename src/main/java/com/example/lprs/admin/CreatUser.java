@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import modele.Passewordgenerator;
 import modele.Utilisateur;
 import repository.UtilisateurRepository;
@@ -61,7 +62,7 @@ public class CreatUser implements Initializable {
                     if (userconect.getRole() == 1){
                         RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(userconect));
                     }else {
-                        RunApplication.changeScene("/com/example/lprs/user/accueil",new AccueilU(userconect));
+                        RunApplication.changeScene("/com/example/lprs/user/accueilU",new AccueilU(userconect));
                     }
 
                 } catch (Exception e) {
@@ -88,11 +89,11 @@ public class CreatUser implements Initializable {
     }
 
     @FXML
-    void onClickBack(ActionEvent event) {
+    void onClickBack(MouseEvent event) {
         if (userconect.getRole() == 1){
             RunApplication.changeScene("/com/example/lprs/admin/accueil", new Accueil(newuser));
         }else {
-            RunApplication.changeScene("/com/example/lprs/user/accueil", new AccueilU(newuser));
+            RunApplication.changeScene("/com/example/lprs/user/accueilU", new AccueilU(newuser));
         }
     }
 

@@ -40,8 +40,7 @@
             <MFXTextField fx:id="email" floatingText="Email" layoutX="189.0" layoutY="317.0" prefHeight="50.0" prefWidth="199.0" />
             <MFXTextField fx:id="prenom" floatingText="Prénom" layoutX="189.0" layoutY="249.0" prefHeight="50.0" prefWidth="199.0" />
             <MFXComboBox fx:id="role" floatingText="Rôle" layoutX="189.0" layoutY="385.0" prefHeight="50.0" prefWidth="198.0" />
-            <FontIcon fill="WHITE" iconColor="WHITE" iconLiteral="fas-arrow-circle-left" iconSize="50" layoutX="31.0" layoutY="567.0" text="" wrappingWidth="46.400054931640625" />
-            <MFXButton fx:id="retour" layoutX="100.0" layoutY="535.0" onAction="#onClickBack" prefHeight="26.0" prefWidth="90.0" text="Retour" />
+            <FontIcon fill="WHITE" iconColor="WHITE" iconLiteral="fas-arrow-circle-left" iconSize="50" layoutX="31.0" layoutY="567.0" onMouseClicked="#onClickBack" text="" wrappingWidth="46.400054931640625" />
          </children>
       </AnchorPane>
    </children>

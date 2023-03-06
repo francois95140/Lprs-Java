@@ -9,13 +9,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import modele.Email;
+import modele.Emailer;
 import modele.Passewordgenerator;
 import modele.Utilisateur;
 import repository.UtilisateurRepository;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
@@ -61,28 +60,9 @@ public class ResetPassword implements Initializable {
         System.out.println(userSelected.getEmail());
         System.out.println(userSelected.getCode());
         System.out.println("good");
-        /*Email email = new Email();
-        email.sendCode(userSelected.getEmail(),userSelected.getCode());
-        final String fromEmail = "contactlprs.fr@gmail.com"; //requires valid gmail id
-        final String password = "LprsGestion01"; // correct password for gmail id
-        final String toEmail = userSelected.getEmail(); // can be any email id
-
-        System.out.println("TLSEmail Start");
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
-        props.put("mail.smtp.port", "587"); //TLS Port
-        props.put("mail.smtp.auth", "true"); //enable authentication
-        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
-        //create Authenticator object to pass in Session.getInstance argument
-        Authenticator auth = new Authenticator() {
-            //override the getPasswordAuthentication method
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromEmail, password);
-            }
-        };
-        Session session = Session.getInstance(props, auth);*/
-
-        //sendEmail(session, toEmail,"TLSEmail Testing Subject", "TLSEmail Testing Body with this code : "+userSelected.getCode());
+        Emailer email = new Emailer();
+        System.out.println(userSelected.getEmail());
+        //email.sendCode(userSelected.getEmail(),"hbg","vyvvuvgbgju "+userSelected.getCode());
 
         userName.setVisible(false);
         passeword.setVisible(false);
@@ -117,7 +97,7 @@ public class ResetPassword implements Initializable {
                                         //reconnexion auto
                                         Utilisateur u = utilisateurRepository.connexion(userSelected.getEmail(),userSelected.getMdp());
                                         if(u != null){
-                                            if (u.getRole().equals("1")){
+                                            if (u.getRole()==1){
                                                 RunApplication.changeScene("/com/example/lprs/admin/accueil",new Accueil(u));
                                                 System.out.println("Admin connecte");
                                             } else {
@@ -149,36 +129,11 @@ public class ResetPassword implements Initializable {
         });
     }
 
-
-    private void sendEmail(Session session, String toEmail, String subject, String body){
-        try
-        {
-            MimeMessage msg = new MimeMessage(session);
-            //set message headers
-            msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-            msg.addHeader("format", "flowed");
-            msg.addHeader("Content-Transfer-Encoding", "8bit");
-
-            msg.setFrom(new InternetAddress("lemoine.sebastien15@gmail.com", "NoReply-JD"));
-
-            msg.setReplyTo(InternetAddress.parse("lemoine.sebastien15@gmail.com", false));
-
-            msg.setSubject(subject, "UTF-8");
-
-            msg.setText(body, "UTF-8");
-
-            msg.setSentDate(new Date());
-
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-            System.out.println("Message is ready");
-            Transport.send(msg);
-
-            System.out.println("EMail Sent Successfully!!");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+    @FXML
+    void onClickBack(MouseEvent event) {
+        RunApplication.changeScene("/com/example/lprs/user/loging");
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
