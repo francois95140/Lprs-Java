@@ -15,9 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
-import modele.FicheEtudiant;
-import modele.Fourniture;
-import modele.Utilisateur;
+import modele.*;
+import repository.DemandeRepository;
+import repository.DossierInscriptionRepository;
 import repository.FicheEtudiantRepository;
 import repository.FournitureRepository;
 
@@ -28,7 +28,9 @@ import java.util.ResourceBundle;
 public class AccueilU implements Initializable {
 
     FicheEtudiantRepository ficherepo = new FicheEtudiantRepository();
+    DemandeRepository demanderepo = new DemandeRepository();
     FournitureRepository fourniturerepo = new FournitureRepository();
+    DossierInscriptionRepository dossierepo = new DossierInscriptionRepository();
 
     private final Utilisateur utilisateur;
     private FicheEtudiant ficheEtudiant;
@@ -68,10 +70,10 @@ public class AccueilU implements Initializable {
     private MFXTableView<Fourniture> listStock;
 
     @FXML
-    private MFXTableView<String> listDemande;
+    private MFXTableView<Demande> listDemande;
 
     @FXML
-    private MFXTableView<String> listDossier;
+    private MFXTableView<DossierInscripition> listDossier;
 
 
     @FXML
@@ -107,7 +109,7 @@ public class AccueilU implements Initializable {
 
     @FXML
     void onRowClick(MouseEvent event) {
-        System.out.println(listEleve.getSelectionModel().getSelection());
+        System.out.println(listEleve.getSelectionModel().getSelectedValues());
         System.out.println(ficheEtudiant.getEmail());
 
         /*this.ficheEtudiant = listEleve.getSelectionModel().getSelection();
@@ -119,6 +121,14 @@ public class AccueilU implements Initializable {
     @FXML
     void onClickDeletFiche(ActionEvent event) {
 
+    }
+    @FXML
+    void onClickFicheFourniture(ActionEvent event) {
+        RunApplication.changeScene("/com/example/lprs/user/Fiche_fourniture",new FicheFourniture(utilisateur));
+    }
+    @FXML
+    void onClickNewFournisseur(ActionEvent event) {
+        RunApplication.changeScene("/com/example/lprs/user/creat-fournisseur",new CreatFournisseur(utilisateur));
     }
 
     @FXML
@@ -187,6 +197,8 @@ public class AccueilU implements Initializable {
 
         listEleve.getItems().addAll(ficherepo.getFiche());
 
+
+
     }
 
     private void setupFourniture(){
@@ -215,6 +227,60 @@ public class AccueilU implements Initializable {
         listStock.getItems().addAll(fourniturerepo.getfourniture());
     }
 
+    private void setupDemnde(){
+        MFXTableColumn<Demande> numerotColumn = new MFXTableColumn<>("Numerot", true, Comparator.comparing(Demande::getIdDemande));
+        MFXTableColumn<Demande> nomColumn = new MFXTableColumn<>("Fourniture", true, Comparator.comparing(Demande::getNomFourniture));
+        MFXTableColumn<Demande> quantiteColum = new MFXTableColumn<>("Qantité",true, Comparator.comparing(Demande::getQuantiter));
+        MFXTableColumn<Demande> demanderColum = new MFXTableColumn<>("Demandeur",true, Comparator.comparing(Demande::getNomDemandeur));
+        MFXTableColumn<Demande> raisonColum = new MFXTableColumn<>("Raisoin",true, Comparator.comparing(Demande::getRaison));
+
+        numerotColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getIdDemande));
+        nomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getNomFourniture));
+        quantiteColum.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getQuantiter));
+        demanderColum.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getNomDemandeur));
+        raisonColum.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getRaison));
+
+
+        numerotColumn.setStyle("-fx-pref-width: 100");
+        nomColumn.setStyle("-fx-pref-width: 100");
+        quantiteColum.setStyle("-fx-pref-width: 150");
+        demanderColum.setStyle("-fx-pref-width: 120");
+        raisonColum.setStyle("-fx-pref-width: 200");
+
+
+        listDemande.getTableColumns().add(numerotColumn);
+        listDemande.getTableColumns().add(nomColumn);
+        listDemande.getTableColumns().add(quantiteColum);
+        listDemande.getTableColumns().add(demanderColum);
+        listDemande.getTableColumns().add(raisonColum);
+
+
+        listDemande.getFilters().add(new IntegerFilter<>("Numerot", Demande::getIdDemande));
+        listDemande.getFilters().add(new StringFilter<>("Fourniture", Demande::getNomFourniture));
+        listDemande.getFilters().add(new IntegerFilter<>("Qantité", Demande::getQuantiter));
+        listDemande.getFilters().add(new StringFilter<>("Demandeur", Demande::getNomDemandeur));
+        listDemande.getFilters().add(new StringFilter<>("Raisoin", Demande::getRaison));
+
+        listDemande.getItems().addAll(demanderepo.getDemande());
+
+        listDemande.getSelectionModel().getSelection();
+    }
+
+    public void setDossier(){
+        MFXTableColumn<DossierInscripition> numerotDossierColumn = new MFXTableColumn<>("Numerot", true, Comparator.comparing(DossierInscripition::getId_dossier));
+        MFXTableColumn<DossierInscripition> dateColumn = new MFXTableColumn<>("Date", true, Comparator.comparing(DossierInscripition::getDate));
+        MFXTableColumn<DossierInscripition> filierColum = new MFXTableColumn<>("Filier",true, Comparator.comparing(DossierInscripition::getFiliere));
+        MFXTableColumn<DossierInscripition> motivationColum = new MFXTableColumn<>("Motivation",true, Comparator.comparing(DossierInscripition::getMotivation));
+
+        numerotDossierColumn.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getId_dossier));
+        dateColumn.setRowCellFactory(list  -> new MFXTableRowCell<>(DossierInscripition::getDate));
+
+        listDossier.getTableColumns().add(numerotDossierColumn);
+        listDossier.getTableColumns().add(dateColumn);
+
+        listDossier.getItems().addAll(dossierepo.getdossier());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (utilisateur.getRole()==2){
@@ -222,6 +288,7 @@ public class AccueilU implements Initializable {
             demande.setDisable(true);
             stokck.setDisable(true);
             setupFiche();
+            setDossier();
         } else if (utilisateur.getRole()==3) {
             ficheEleve.setDisable(true);
             stokck.setDisable(true);
@@ -231,6 +298,7 @@ public class AccueilU implements Initializable {
            supprimerStock.setVisible(false);
            modifierStock.setVisible(false);
            setupFourniture();
+           setupDemnde();
         }
 
     }
