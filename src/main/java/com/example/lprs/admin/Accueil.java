@@ -10,14 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import modele.FicheEtudiant;
-import modele.Fourniture;
-import modele.Logs;
-import modele.Utilisateur;
-import repository.FicheEtudiantRepository;
-import repository.FournitureRepository;
-import repository.LogsRepository;
-import repository.UtilisateurRepository;
+import modele.*;
+import repository.*;
 
 import java.net.URL;
 import java.util.Comparator;
@@ -32,11 +26,12 @@ public class Accueil implements Initializable {
         this.utilisateur = u;
         System.out.println(this.utilisateur);
     }
-
+    DemandeRepository demanderepo = new DemandeRepository();
     FicheEtudiantRepository ficherepo = new FicheEtudiantRepository();
     FournitureRepository fourniturerepo = new FournitureRepository();
     UtilisateurRepository userrepo = new UtilisateurRepository();
     LogsRepository logsrepo = new LogsRepository();
+    DossierInscriptionRepository dossierepo = new DossierInscriptionRepository();
 
     @FXML
     private MenuItem deletUser;
@@ -51,7 +46,7 @@ public class Accueil implements Initializable {
     private Tab fiche;
 
     @FXML
-    private MFXTableView<?> listDossier;
+    private MFXTableView<DossierInscripition> listDossier;
 
     @FXML
     private MFXTableView<FicheEtudiant> listFiche;
@@ -63,7 +58,7 @@ public class Accueil implements Initializable {
     private MFXTableView<Fourniture> listStock;
 
     @FXML
-    private MFXTableView<?> listeDemande;
+    private MFXTableView<Demande> listeDemande;
 
     @FXML
     private MFXTableView<Logs> listLogs;
@@ -155,12 +150,14 @@ public class Accueil implements Initializable {
 
     }
     private void setupPersonnel() {
+        MFXTableColumn<Utilisateur> numerotColumn = new MFXTableColumn<>("Numérot", true, Comparator.comparing(Utilisateur::getIdUtilisateur));
         MFXTableColumn<Utilisateur> nomColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Utilisateur::getNom));
         MFXTableColumn<Utilisateur> prenomColumn = new MFXTableColumn<>("Prénom", true, Comparator.comparing(Utilisateur::getPrenom));
         MFXTableColumn<Utilisateur> emailColum = new MFXTableColumn<>("Email",true, Comparator.comparing(Utilisateur::getEmail));
         MFXTableColumn<Utilisateur> roleColum = new MFXTableColumn<>("Role", true, Comparator.comparing(Utilisateur::getRole));
 
 
+        numerotColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Utilisateur::getIdUtilisateur));
         nomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Utilisateur::getNom));
         prenomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Utilisateur::getPrenom));
         emailColum.setRowCellFactory(list -> new MFXTableRowCell<>(Utilisateur::getEmail));
@@ -170,11 +167,13 @@ public class Accueil implements Initializable {
         prenomColumn.setStyle("-fx-pref-width: 100");
         emailColum.setStyle("-fx-pref-width: 150");
 
+        listPersonnel.getTableColumns().add(numerotColumn);
         listPersonnel.getTableColumns().add(nomColumn);
         listPersonnel.getTableColumns().add(prenomColumn);
         listPersonnel.getTableColumns().add(emailColum);
         listPersonnel.getTableColumns().add(roleColum);
 
+        listPersonnel.getFilters().add(new IntegerFilter<>("Numérot", Utilisateur::getIdUtilisateur));
         listPersonnel.getFilters().add(new StringFilter<>("Nom", Utilisateur::getNom));
         listPersonnel.getFilters().add(new StringFilter<>("Prénom", Utilisateur::getPrenom));
         listPersonnel.getFilters().add(new StringFilter<>("Email", Utilisateur::getEmail));
@@ -182,6 +181,76 @@ public class Accueil implements Initializable {
 
         listPersonnel.getItems().addAll(userrepo.getUtilisateurs());
 
+    }
+    private void setupDossier(){
+        MFXTableColumn <DossierInscripition> numerotDossierColum = new MFXTableColumn<>("Numérot",true,Comparator.comparing(DossierInscripition::getId_dossier));
+        MFXTableColumn <DossierInscripition> dateColum = new MFXTableColumn<>("Date",true,Comparator.comparing(DossierInscripition::getDate));
+        MFXTableColumn <DossierInscripition> filiereColum = new MFXTableColumn<>("Filiere",true,Comparator.comparing(DossierInscripition::getFiliere));
+        MFXTableColumn <DossierInscripition> motivationColum = new MFXTableColumn<>("Motivation",true,Comparator.comparing(DossierInscripition::getMotivation));
+        MFXTableColumn <DossierInscripition> eleveColum = new MFXTableColumn<>("Nom Eléve",true,Comparator.comparing(DossierInscripition::getEleve));
+
+        numerotDossierColum.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getId_dossier));
+        dateColum.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getDate));
+        filiereColum.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getFiliere));
+        motivationColum.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getMotivation));
+        eleveColum.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getEleve));
+
+        numerotDossierColum.setStyle("-fx-pref-width: 10");
+        dateColum.setStyle("-fx-pref-width: 120");
+        motivationColum.setStyle("-fx-pref-width: 300");
+        eleveColum.setStyle("-fx-pref-width: 150");
+
+        listDossier.getTableColumns().add(numerotDossierColum);
+        listDossier.getTableColumns().add(dateColum);
+        listDossier.getTableColumns().add(filiereColum);
+        listDossier.getTableColumns().add(motivationColum);
+        listDossier.getTableColumns().add(eleveColum);
+
+
+        listDossier.getFilters().add(new IntegerFilter<>("Numérot",DossierInscripition::getId_dossier));
+        listDossier.getFilters().add(new StringFilter<>("Date",DossierInscripition::getDate));
+        listDossier.getFilters().add(new StringFilter<>("Filiere",DossierInscripition::getFiliere));
+        listDossier.getFilters().add(new StringFilter<>("Motivation",DossierInscripition::getMotivation));
+        listDossier.getFilters().add(new StringFilter<>("Nom Eléve",DossierInscripition::getEleve));
+
+        listDossier.getItems().addAll(dossierepo.getdossier());
+    }
+    private void setupDemnde(){
+        MFXTableColumn<Demande> numerotColumn = new MFXTableColumn<>("Numerot", true, Comparator.comparing(Demande::getIdDemande));
+        MFXTableColumn<Demande> nomColumn = new MFXTableColumn<>("Fourniture", true, Comparator.comparing(Demande::getNomFourniture));
+        MFXTableColumn<Demande> quantiteColum = new MFXTableColumn<>("Qantité",true, Comparator.comparing(Demande::getQuantiter));
+        MFXTableColumn<Demande> demanderColum = new MFXTableColumn<>("Demandeur",true, Comparator.comparing(Demande::getNomDemandeur));
+        MFXTableColumn<Demande> raisonColum = new MFXTableColumn<>("Raisoin",true, Comparator.comparing(Demande::getRaison));
+
+        numerotColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getIdDemande));
+        nomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getNomFourniture));
+        quantiteColum.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getQuantiter));
+        demanderColum.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getNomDemandeur));
+        raisonColum.setRowCellFactory(list -> new MFXTableRowCell<>(Demande::getRaison));
+
+
+        numerotColumn.setStyle("-fx-pref-width: 100");
+        nomColumn.setStyle("-fx-pref-width: 100");
+        quantiteColum.setStyle("-fx-pref-width: 150");
+        demanderColum.setStyle("-fx-pref-width: 120");
+        raisonColum.setStyle("-fx-pref-width: 200");
+
+
+        listeDemande.getTableColumns().add(numerotColumn);
+        listeDemande.getTableColumns().add(nomColumn);
+        listeDemande.getTableColumns().add(quantiteColum);
+        listeDemande.getTableColumns().add(demanderColum);
+        listeDemande.getTableColumns().add(raisonColum);
+
+        listeDemande.getFilters().add(new IntegerFilter<>("Numerot", Demande::getIdDemande));
+        listeDemande.getFilters().add(new StringFilter<>("Fourniture", Demande::getNomFourniture));
+        listeDemande.getFilters().add(new IntegerFilter<>("Qantité", Demande::getQuantiter));
+        listeDemande.getFilters().add(new StringFilter<>("Demandeur", Demande::getNomDemandeur));
+        listeDemande.getFilters().add(new StringFilter<>("Raisoin", Demande::getRaison));
+
+        listeDemande.getItems().addAll(demanderepo.getDemande());
+
+        listeDemande.getSelectionModel().getSelection();
     }
     private void setupLogs() {
         MFXTableColumn<Logs> idlogsColumn = new MFXTableColumn<>("Numerot", true, Comparator.comparing(Logs::getId_logs));
@@ -212,7 +281,6 @@ public class Accueil implements Initializable {
         listLogs.getItems().addAll(logsrepo.getLogs());
 
     }
-
     private void setupFourniture(){
         MFXTableColumn<Fourniture> numerotColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getIdFourniture));
         MFXTableColumn<Fourniture> nomColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getNom));
@@ -242,6 +310,9 @@ public class Accueil implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        listPersonnel.getSelectionModel().getSelectedValues();
+        setupDossier();
+        setupDemnde();
         setupFourniture();
         setupPersonnel();
         setupFiche();
