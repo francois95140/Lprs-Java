@@ -25,7 +25,6 @@
       </AnchorPane>
       <AnchorPane layoutX="420.0" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MFXButton fx:id="validee" layoutX="238.0" layoutY="391.0" onAction="#validee" prefHeight="34.0" prefWidth="105.0" text="Validée" AnchorPane.bottomAnchor="174.60000000000002" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="238.0" />
             <Label fx:id="Erreur" alignment="CENTER" layoutX="75.0" layoutY="65.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="65.0">
                <font>
                   <Font size="14.0" />
@@ -35,6 +34,7 @@
             <FontIcon fill="WHITE" iconColor="WHITE" iconLiteral="fas-arrow-circle-left" iconSize="50" layoutX="36.0" layoutY="566.0" onMouseClicked="#retoure" text="" wrappingWidth="46.400054931640625" />
             <MFXFilterComboBox fx:id="fourniture" floatingText="Fourniture" layoutX="217.0" layoutY="165.0" prefHeight="51.0" prefWidth="147.0" promptText="Fourniture" />
             <MFXTextField fx:id="raisons" floatingText="Raisons" layoutX="217.0" layoutY="238.0" prefHeight="50.0" prefWidth="146.0" promptText="J'ai oublier le mien" />
+            <MFXButton fx:id="validez" layoutX="247.0" layoutY="390.0" onAction="#onClickValidez" prefHeight="33.0" prefWidth="85.0" text="Validez" />
          </children>
       </AnchorPane>
    </children>

@@ -64,6 +64,12 @@
                         <MFXButton fx:id="ajouterStock" layoutX="21.0" layoutY="7.0" onAction="#onClickAjouterStock" text="Ajouter" />
                         <MFXButton fx:id="modifierStock" layoutX="98.0" layoutY="7.0" onAction="#onClickModifierStock" text="Modifier" />
                         <MFXButton fx:id="supprimerStock" layoutX="174.0" layoutY="7.0" onAction="#onClickSupprimerStock" text="Supprimer" />
+                        <SplitMenuButton layoutX="751.0" layoutY="7.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="74.0" text="Action">
+                           <items>
+                              <MenuItem fx:id="creatFournisseur" mnemonicParsing="false" onAction="#onClickNewFournisseur" text="Ajouter Fournisseur" />
+                              <MenuItem fx:id="creatFicheFourniture" mnemonicParsing="false" onAction="#onClickFicheFourniture" text="Fiche fourniture" />
+                           </items>
+                        </SplitMenuButton>
                             </children>
                         </AnchorPane>
                     </content>

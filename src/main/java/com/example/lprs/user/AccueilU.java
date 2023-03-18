@@ -124,7 +124,7 @@ public class AccueilU implements Initializable {
     }
     @FXML
     void onClickFicheFourniture(ActionEvent event) {
-        RunApplication.changeScene("/com/example/lprs/user/Fiche_fourniture",new FicheFourniture(utilisateur));
+        RunApplication.changeScene("/com/example/lprs/user/Fiche_fourniture",new CreatFicheFourniture(utilisateur));
     }
     @FXML
     void onClickNewFournisseur(ActionEvent event) {
