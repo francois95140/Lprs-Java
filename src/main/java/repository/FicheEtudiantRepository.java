@@ -66,7 +66,7 @@ public class FicheEtudiantRepository {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                fiche = new FicheEtudiant(rs.getInt("id_fiche"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("diplome"), rs.getInt("telephone"), rs.getString("rue"), rs.getInt("cp"), rs.getString("ville"),rs.getInt("ref_utilisateur"),rs.getInt("ref_dossier"));
+                fiche = new FicheEtudiant(rs.getInt("id_fiche"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("diplome"), rs.getInt("telephone"), rs.getString("rue"), rs.getInt("cp"), rs.getString("ville"),rs.getInt("ref_utilisateur"));
                 FicheEtudiant.add(fiche);
             }
         } catch (SQLException e) {

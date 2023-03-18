@@ -18,7 +18,7 @@ public class FicheFournitureRepository {
         coBDD = new Database();
     }
 
-    public FicheFourniture fiche_fourniture(FicheFourniture fiche_fourniture) throws SQLException {
+    public FicheFourniture Insert(FicheFourniture fiche_fourniture) throws SQLException {
         String sql;
         PreparedStatement pstm;
         if (fiche_fourniture.getId_fiche_fourniture() > 0) {

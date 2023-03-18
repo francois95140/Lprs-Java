@@ -4,6 +4,10 @@ public class Demande {
 
     private int idDemande;
     private String nomFourniture;
+
+
+
+    private String nomDemandeur;
     private int quantiter;
     private int refProf;
     private int refGestionaire;
@@ -32,6 +36,14 @@ public class Demande {
         this.quantiter=quantiter;
         this.refProf=refProf;
         this.raison=raison;
+    }
+
+    public Demande(int idDemande, String nomFourniture, int quantiteDemander, String nom, String raison) {
+        this.idDemande = idDemande;
+        this.nomDemandeur = nom;
+        this.nomFourniture = nomFourniture;
+        this.quantiter = quantiteDemander;
+        this.raison = raison;
     }
 
     public int getIdDemande() {
@@ -80,5 +92,17 @@ public class Demande {
 
     public void setRaison(String raison) {
         this.raison = raison;
+    }
+
+    public String getNomDemandeur() {
+        return nomDemandeur;
+    }
+
+    public int getRefGestionaire() {
+        return refGestionaire;
+    }
+
+    public void setRefGestionaire(int refGestionaire) {
+        this.refGestionaire = refGestionaire;
     }
 }

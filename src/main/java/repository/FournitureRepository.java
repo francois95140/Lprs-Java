@@ -34,7 +34,7 @@ public class FournitureRepository {
         }
 //insert
         else {
-            sql = "INSERT INTO `" + table + "`( `nom`, `quantite`) VALUES (?,?)";
+            sql = "INSERT INTO `" + table + "`( `nom`, `stock`) VALUES (?,?)";
 
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, fourniture.getNom());
@@ -59,7 +59,7 @@ public class FournitureRepository {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                fourniture = new Fourniture(rs.getInt("id_fourniture"), rs.getString("nom"), rs.getInt("quantite"));
+                fourniture = new Fourniture(rs.getInt("id_fourniture"), rs.getString("nom"), rs.getInt("stock"));
                 Fournitures.add(fourniture);
             }
         } catch (SQLException e) {

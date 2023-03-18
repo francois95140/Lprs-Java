@@ -11,19 +11,23 @@ import java.util.ArrayList;
 
 public class DossierInscriptionRepository {
     private Database coBdd;
-    private String table = "DossierIncription";
+    private String table = "dossier_inscription";
+
+    public DossierInscriptionRepository() {
+        coBdd = new Database();
+    }
 
     public DossierInscripition inscription(DossierInscripition dossierinscription) throws SQLException {
         String sql;
         PreparedStatement pstm;
         if (dossierinscription.getId_dossier() > 0) {
-            sql = "UPDATE `" + table + "` SET `date`=?,`heure`=?,`filiere`=?,`motivation`=?,`ref_fiche`=? WHERE getId_dossier=?";
+            sql = "UPDATE `" + table + "` SET `date`=?,`heure`=?,`filiere`=?,`motivation`=?,`ref_fiche`=? WHERE id_dossier=?";
             pstm = coBdd.getConnection().prepareStatement(sql);
             pstm.setString(1, dossierinscription.getDate());
             pstm.setString(2, dossierinscription.getHeure());
             pstm.setString(3, dossierinscription.getFiliere());
             pstm.setString(4, dossierinscription.getMotivation());
-            pstm.setString(5, dossierinscription.getRef_fiche());
+            pstm.setString(5, String.valueOf(dossierinscription.getRef_fiche()));
 
             pstm.executeUpdate();
 
@@ -37,7 +41,7 @@ public class DossierInscriptionRepository {
             pstm.setString(2, dossierinscription.getHeure());
             pstm.setString(3, dossierinscription.getFiliere());
             pstm.setString(4, dossierinscription.getMotivation());
-            pstm.setString(5, dossierinscription.getRef_fiche());
+            pstm.setString(5, String.valueOf(dossierinscription.getRef_fiche()));
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
@@ -49,21 +53,21 @@ public class DossierInscriptionRepository {
         return dossierinscription;
     }
 
-    public ArrayList<DossierInscripition> getId_dossier(){
+    public ArrayList<DossierInscripition> getdossier(){
         ArrayList<DossierInscripition> DossierInscripitions = new ArrayList<DossierInscripition>();
         DossierInscripition dossierinscription;
-        String sql = "SELECT * FROM " + table;
+        String sql = "SELECT *,`nom`,`prenom` FROM " + table+" INNER JOIN fiche_etudiant WHERE dossier_inscription.ref_fiche = fiche_etudiant.id_fiche";
         PreparedStatement pstm;
         try {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                dossierinscription = new DossierInscripition(rs.getInt("id_dossier"), rs.getString("date"), rs.getString("heure"), rs.getString("filiere"), rs.getString("motivation"), rs.getString("ref_fiche"));
+            while (rs.next()){
+                System.out.println(rs.getInt("id_dossier"));
+                dossierinscription = new DossierInscripition(rs.getInt("id_dossier"),rs.getString("date"),rs.getString("heure"),rs.getString("filiere"),rs.getString("motivation"),rs.getInt("ref_fiche"),rs.getString("nom"),rs.getString("prenom"));
                 DossierInscripitions.add(dossierinscription);
             }
         } catch (SQLException e) {
-// TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return DossierInscripitions;
     }
