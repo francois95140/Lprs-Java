@@ -10,11 +10,17 @@ public class Fournisseur {
     public  Fournisseur (int id_fournisseur, String nom_entreprise, String rue, int cp, String ville){
         this.id_fournisseur=id_fournisseur;
         this.nom_entreprise=nom_entreprise;
+        this.rue = rue;
         this.cp=cp;
         this.ville=ville;
-
-
     }
+    public  Fournisseur (String nom_entreprise, String rue, int cp, String ville){
+        this.nom_entreprise=nom_entreprise;
+        this.rue = rue;
+        this.cp=cp;
+        this.ville=ville;
+    }
+
 
     public int getId_fournisseur() {
         return id_fournisseur;
