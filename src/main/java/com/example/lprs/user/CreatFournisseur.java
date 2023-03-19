@@ -48,11 +48,13 @@ public class CreatFournisseur implements Initializable {
 
     @FXML
     void validee(ActionEvent event) throws SQLException {
-        if (!nom.getText().isBlank() || !rue.getText().isBlank() || !cp.getText().isBlank() || !ville.getText().isBlank()){
+        if (!nom.getText().isBlank() || !rue.getText().isBlank() || !cp.getText().isBlank() || !ville.getText().isBlank() ){
             FournisseurRepository fnrepo = new FournisseurRepository();
             Fournisseur newfn = new Fournisseur(nom.getText(),rue.getText(),Integer.parseInt(cp.getText()),ville.getText());
             fnrepo.Insert(newfn);
             RunApplication.changeScene("/com/example/lprs/user/accueilU", new AccueilU(userconnect));
+        }else {
+            Erreur.setText("Un ou plusieur champ vide");
         }
 
     }
