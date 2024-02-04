@@ -1,6 +1,8 @@
 package repository;
+
 import BDD.Database;
 import modele.FicheEtudiant;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 public class FicheEtudiantRepository {
     private Database coBdd;
     private String table = "fiche_etudiant";
+    String secondTable = "dossier_inscription";
 
 
     public FicheEtudiantRepository() {
@@ -66,7 +69,7 @@ public class FicheEtudiantRepository {
             pstm = coBdd.getConnection().prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                fiche = new FicheEtudiant(rs.getInt("id_fiche"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("diplome"), rs.getInt("telephone"), rs.getString("rue"), rs.getInt("cp"), rs.getString("ville"),rs.getInt("ref_utilisateur"));
+                fiche = new FicheEtudiant(rs.getInt("id_fiche"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("diplome"), rs.getInt("telephone"), rs.getString("rue"), rs.getInt("cp"), rs.getString("ville"), rs.getInt("ref_utilisateur"));
                 FicheEtudiant.add(fiche);
             }
         } catch (SQLException e) {

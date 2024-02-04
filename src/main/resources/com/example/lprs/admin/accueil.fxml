@@ -2,11 +2,14 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane prefHeight="560.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -16,7 +19,37 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="840.0">
                      <children>
-                        <MFXButton fx:id="modifMyAccont" layoutX="388.0" layoutY="253.0" onAction="#modifMyAccont" text="Modifier" />
+                        <FontIcon fx:id="logout" iconColor="WHITE" iconLiteral="eva-log-out" iconSize="25" layoutX="808.0" layoutY="37.0" onDragDetected="#onClickLogout" onMouseClicked="#onClickLogout" text="" wrappingWidth="17.800018310546875" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="807.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <AnchorPane layoutX="233.0" layoutY="34.0" prefHeight="462.0" prefWidth="374.0">
+                           <children>
+                              <MFXButton fx:id="modifMyAccont" layoutX="155.0" layoutY="397.0" onAction="#modifMyAccont" text="Modifier" />
+                              <Label alignment="CENTER" layoutX="168.0" layoutY="24.0" text="Profil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nom" alignment="CENTER" layoutX="92.0" layoutY="97.0" prefHeight="27.0" prefWidth="214.0" text="Nom" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="prenom" alignment="CENTER" layoutX="92.0" layoutY="159.0" prefHeight="27.0" prefWidth="214.0" text="Nom" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="email" alignment="CENTER" layoutX="8.0" layoutY="217.0" prefHeight="27.0" prefWidth="358.0" text="Nom" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="role" alignment="CENTER" layoutX="92.0" layoutY="292.0" prefHeight="27.0" prefWidth="214.0" text="Nom" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children></AnchorPane>
                     </content>
                 </Tab>

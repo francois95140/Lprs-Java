@@ -1,19 +1,23 @@
 package modele;
 
 public class Fourniture {
-private int idFourniture;
-private String nom;
-private int stock;
-private String fournisseur;
+    private int idFourniture;
+    private String nom;
+    private int stock;
+    private String fournisseur;
 
-    public Fourniture(int idFourniture, String nom, int stock){
+    private int ref_utilisateur;
+
+    public Fourniture(int idFourniture, String nom, int stock) {
         this.idFourniture = idFourniture;
         this.nom = nom;
         this.stock = stock;
     }
-    public Fourniture(String nom, int stock){
+
+    public Fourniture(String nom, int stock, int ref_utilisateur) {
         this.nom = nom;
         this.stock = stock;
+        this.ref_utilisateur = ref_utilisateur;
     }
 
     public int getIdFourniture() {
@@ -34,6 +38,10 @@ private String fournisseur;
 
     public int getStock() {
         return stock;
+    }
+
+    public int getRef_utilisateur() {
+        return ref_utilisateur;
     }
 
     public void setStock(int stock) {

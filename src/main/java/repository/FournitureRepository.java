@@ -1,6 +1,7 @@
 package repository;
 
 import BDD.Database;
+import modele.Demande;
 import modele.Fourniture;
 
 import java.sql.PreparedStatement;
@@ -34,11 +35,12 @@ public class FournitureRepository {
         }
 //insert
         else {
-            sql = "INSERT INTO `" + table + "`( `nom`, `stock`) VALUES (?,?)";
+            sql = "INSERT INTO `" + table + "`( `nom`, `stock`,`ref_utilisateur`) VALUES (?,?,?)";
 
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, fourniture.getNom());
             pstm.setInt(2, fourniture.getStock());
+            pstm.setInt(3, fourniture.getRef_utilisateur());
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
@@ -67,6 +69,16 @@ public class FournitureRepository {
             e.printStackTrace();
         }
         return Fournitures;
+    }
+
+    public void setStock(String fourniture, int qte) throws SQLException {
+        String sql;
+        PreparedStatement pstm;
+        sql = "UPDATE `" + table + "` SET `stock`= fourniture.stock - ? WHERE `nom`=?";
+        pstm = coBdd.getConnection().prepareStatement(sql);
+        pstm.setInt(1, qte);
+        pstm.setString(2, fourniture);
+        pstm.executeUpdate();
     }
 
 }

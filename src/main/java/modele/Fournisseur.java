@@ -3,6 +3,7 @@ package modele;
 public class Fournisseur {
     private int id_fournisseur;
     private String nom_entreprise;
+    private  int ref_utilisateur;
     private String rue;
     private int cp;
     private String ville;
@@ -14,11 +15,12 @@ public class Fournisseur {
         this.cp=cp;
         this.ville=ville;
     }
-    public  Fournisseur (String nom_entreprise, String rue, int cp, String ville){
+    public  Fournisseur (String nom_entreprise, String rue, int cp, String ville,int ref_utilisateur){
         this.nom_entreprise=nom_entreprise;
         this.rue = rue;
         this.cp=cp;
         this.ville=ville;
+        this.ref_utilisateur = ref_utilisateur;
     }
 
 
@@ -40,6 +42,10 @@ public class Fournisseur {
 
     public String getRue() {
         return rue;
+    }
+
+    public int getRef_utilisateur() {
+        return ref_utilisateur;
     }
 
     public void setRue(String rue) {

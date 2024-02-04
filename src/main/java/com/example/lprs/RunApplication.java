@@ -47,7 +47,7 @@ public class RunApplication extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            System.err.println(String.format("Error: %s", e.getMessage()));
+            System.err.printf("Error: %s%n", e.getMessage());
         }
     }
 

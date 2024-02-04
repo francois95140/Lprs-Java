@@ -26,12 +26,13 @@ public class FournisseurRepository {
             pstm.setString(4, fournisseur.getVille());
             pstm.executeUpdate();
         } else {
-            sql = "INSERT INTO`" + table + "`(`nom_entreprise`,`rue`,`cp`,`ville`) VALUES(?,?,?,?)";
+            sql = "INSERT INTO`" + table + "`(`nom_entreprise`,`rue`,`cp`,`ville`,`ref_utilisateur`) VALUES(?,?,?,?,?)";
             pstm = coBdd.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, fournisseur.getNom_entreprise());
             pstm.setString(2, fournisseur.getRue());
             pstm.setInt(3, fournisseur.getCp());
             pstm.setString(4, fournisseur.getVille());
+            pstm.setInt(5, fournisseur.getRef_utilisateur());
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {

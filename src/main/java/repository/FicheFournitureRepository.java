@@ -25,7 +25,7 @@ public class FicheFournitureRepository {
             sql = "UPDATE `" + table + "` SET `ref_fournisseur`=?,`prix`=?,`ref_fourniture`=? WHERE getId_fiche_fourniture=?";
             pstm = coBDD.getConnection().prepareStatement(sql);
             pstm.setInt(1, fiche_fourniture.getRef_fourniture());
-            pstm.setDouble(2, fiche_fourniture.getprix());
+            pstm.setDouble(2, fiche_fourniture.getPrix());
             pstm.setInt(3, fiche_fourniture.getRef_fournisseur());
 
             pstm.executeUpdate();
@@ -33,11 +33,12 @@ public class FicheFournitureRepository {
         }
 //insert
         else {
-            sql = "INSERT INTO `" + table + "`(`ref_fournisseur`, `prix`, `ref_fourniture`) VALUES(?,?,?)";
+            sql = "INSERT INTO `" + table + "`(`ref_fournisseur`, `prix`, `ref_fourniture`, `ref_utilisateur`) VALUES(?,?,?,?)";
             pstm = coBDD.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, fiche_fourniture.getRef_fourniture());
-            pstm.setDouble(2, fiche_fourniture.getprix());
+            pstm.setDouble(2, fiche_fourniture.getPrix());
             pstm.setInt(3, fiche_fourniture.getRef_fournisseur());
+            pstm.setInt(4, fiche_fourniture.getRef_utilisateur());
             pstm.executeUpdate();
             ResultSet rs = pstm.getGeneratedKeys();
             if (rs.next()) {
@@ -58,7 +59,7 @@ public class FicheFournitureRepository {
                 pstm = coBDD.getConnection().prepareStatement(sql);
                 ResultSet rs = pstm.executeQuery();
                 while (rs.next()) {
-                    fiche_fourniture = new FicheFourniture(rs.getInt("id_fiche_fourniture"), rs.getInt("ref_fournisseur"), rs.getDouble("prix"), rs.getInt("ref_fourniture"));
+                    fiche_fourniture = new FicheFourniture(rs.getInt("id_fiche_fourniture"), rs.getInt("ref_fournisseur"), rs.getDouble("prix"), rs.getInt("ref_fourniture"), rs.getInt("ref_utilisateur"));
                     ficheFournitures.add(fiche_fourniture);
                 }
             } catch (SQLException e) {

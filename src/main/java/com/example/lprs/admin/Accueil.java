@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import modele.*;
+import org.kordamp.ikonli.javafx.FontIcon;
 import repository.*;
 
 import java.net.URL;
@@ -35,6 +36,21 @@ public class Accueil implements Initializable {
 
     @FXML
     private MenuItem deletUser;
+
+    @FXML
+    private FontIcon logout;
+
+    @FXML
+    private Label nom;
+
+    @FXML
+    private Label prenom;
+
+    @FXML
+    private Label email;
+
+    @FXML
+    private Label role;
 
     @FXML
     private Tab demande;
@@ -100,8 +116,9 @@ public class Accueil implements Initializable {
     }
 
     @FXML
-    void onLogoutButtonClick(ActionEvent event) {
-
+    void onClickLogout(MouseEvent event) {
+        this.utilisateur = null;
+        RunApplication.changeScene("/com/example/lprs/user/loging");
     }
 
     @FXML
@@ -196,7 +213,7 @@ public class Accueil implements Initializable {
         eleveColum.setRowCellFactory(list -> new MFXTableRowCell<>(DossierInscripition::getEleve));
 
         numerotDossierColum.setStyle("-fx-pref-width: 10");
-        dateColum.setStyle("-fx-pref-width: 120");
+        dateColum.setStyle("-fx-pref-width: 200");
         motivationColum.setStyle("-fx-pref-width: 300");
         eleveColum.setStyle("-fx-pref-width: 150");
 
@@ -282,9 +299,9 @@ public class Accueil implements Initializable {
 
     }
     private void setupFourniture(){
-        MFXTableColumn<Fourniture> numerotColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getIdFourniture));
+        MFXTableColumn<Fourniture> numerotColumn = new MFXTableColumn<>("Numérot", true, Comparator.comparing(Fourniture::getIdFourniture));
         MFXTableColumn<Fourniture> nomColumn = new MFXTableColumn<>("Nom", true, Comparator.comparing(Fourniture::getNom));
-        MFXTableColumn<Fourniture> quantiteColum = new MFXTableColumn<>("Email",true, Comparator.comparing(Fourniture::getStock));
+        MFXTableColumn<Fourniture> quantiteColum = new MFXTableColumn<>("Quantiter",true, Comparator.comparing(Fourniture::getStock));
 
         numerotColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getIdFourniture));
         nomColumn.setRowCellFactory(list -> new MFXTableRowCell<>(Fourniture::getNom));
@@ -300,13 +317,18 @@ public class Accueil implements Initializable {
         listStock.getTableColumns().add(nomColumn);
         listStock.getTableColumns().add(quantiteColum);
 
-        listStock.getFilters().add(new IntegerFilter<>("Nom", Fourniture::getIdFourniture));
-        listStock.getFilters().add(new StringFilter<>("Prénom", Fourniture::getNom));
-        listStock.getFilters().add(new IntegerFilter<>("Email", Fourniture::getStock));
+        listStock.getFilters().add(new IntegerFilter<>("Numérot", Fourniture::getIdFourniture));
+        listStock.getFilters().add(new StringFilter<>("Nom", Fourniture::getNom));
+        listStock.getFilters().add(new IntegerFilter<>("Quantiter", Fourniture::getStock));
 
         listStock.getItems().addAll(fourniturerepo.getfourniture());
     }
-
+    private void setupprofil (){
+        nom.setText("Nom : "+utilisateur.getNom() );
+        prenom.setText("Prenom : "+utilisateur.getPrenom() );
+        email.setText("Email : "+utilisateur.getEmail() );
+        role.setText("Role : "+utilisateur.getNom() );
+    };
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -317,6 +339,7 @@ public class Accueil implements Initializable {
         setupPersonnel();
         setupFiche();
         setupLogs();
+        setupprofil();
     }
 
 }

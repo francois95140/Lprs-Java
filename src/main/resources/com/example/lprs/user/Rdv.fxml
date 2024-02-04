@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane accessibleRole="PASSWORD_FIELD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <children>
+      <AnchorPane prefHeight="593.0" prefWidth="420.0" style="-fx-background-color: #9C9C9C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="65.0" layoutY="271.0" prefHeight="50.0" prefWidth="294.0" text="LPRS Gestion" textFill="WHITE" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="271.0">
+               <font>
+                  <Font name="System Bold Italic" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="420.0" onMouseClicked="#retoure" prefHeight="600.0" prefWidth="581.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MFXButton fx:id="valider" layoutX="245.0" layoutY="472.0" onAction="#onClickValider" prefHeight="26.0" prefWidth="90.0" text="Valider" AnchorPane.bottomAnchor="101.60000000000002" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" />
+            <Label alignment="CENTER" layoutX="65.0" layoutY="72.0" prefHeight="46.0" prefWidth="173.0" text="Rendez-vous" textAlignment="CENTER" textFill="#9c9c9c" AnchorPane.bottomAnchor="470.6" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="72.0">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="Erreur" alignment="CENTER" layoutX="65.0" layoutY="129.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="413.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="129.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <MFXDatePicker fx:id="date" layoutX="191.0" layoutY="331.0" prefHeight="50.0" prefWidth="198.0" />
+            <MFXFilterComboBox fx:id="salle" floatingText="Salle" layoutX="191.0" layoutY="398.0" prefHeight="50.0" prefWidth="198.0" />
+            <MFXComboBox fx:id="horaire" floatingText="Horaire" layoutX="191.0" layoutY="266.0" prefHeight="50.0" prefWidth="198.0" />
+            <MFXFilterComboBox fx:id="eleve" floatingText="Eleve" layoutX="191.0" layoutY="200.0" prefHeight="50.0" prefWidth="198.0" />
+            <FontIcon iconColor="WHITE" iconLiteral="fas-arrow-circle-left" iconSize="50" layoutX="42.0" layoutY="559.0" wrappingWidth="13.5999755859375" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -60,9 +60,9 @@ public class ResetPassword implements Initializable {
         System.out.println(userSelected.getEmail());
         System.out.println(userSelected.getCode());
         System.out.println("good");
-        Emailer email = new Emailer();
+        Email email = new Email();
         System.out.println(userSelected.getEmail());
-        //email.sendCode(userSelected.getEmail(),"hbg","vyvvuvgbgju "+userSelected.getCode());
+        email.sendCode(userSelected.getEmail(),"hbg","vyvvuvgbgju "+userSelected.getCode());
 
         userName.setVisible(false);
         passeword.setVisible(false);

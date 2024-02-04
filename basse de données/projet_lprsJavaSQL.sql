@@ -45,9 +45,11 @@ CREATE TABLE IF NOT EXISTS `demande_fournitures` (
   `id_demande` int(11) NOT NULL AUTO_INCREMENT,
   `nom_fourniture` varchar(30) NOT NULL,
   `quantite_demander` int(40) NOT NULL,
-  `ref_utilisateur` int(11) NOT NULL,
+  `ref_prof` int(11) NOT NULL,
+  `ref_gestionaire` int(11) NULL,
   PRIMARY KEY (`id_demande`),
-  KEY `fk_demande_user` (`ref_utilisateur`)
+  KEY `fk_demande_user` (`ref_prof`),
+  KEY `fk_demande_gestionaire` (`ref_gestionaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,9 +65,7 @@ CREATE TABLE IF NOT EXISTS `dossier_inscription` (
   `heure` varchar(40) NOT NULL,
   `filiere` varchar(40) NOT NULL,
   `motivation` varchar(40) NOT NULL,
-  `ref_fiche` int(11) NOT NULL,
-  PRIMARY KEY (`id_dossier`),
-  KEY `fk_dossier_etudiant` (`ref_fiche`)
+  PRIMARY KEY (`id_dossier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,8 +99,10 @@ CREATE TABLE IF NOT EXISTS `fiche_etudiant` (
   `cp` int(5) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `ref_utilisateur` int(11) NOT NULL,
+  `ref_dossier` int(11) NULL ,
   PRIMARY KEY (`id_fiche`),
-  KEY `fk_etudiant_user` (`ref_utilisateur`)
+  KEY `fk_etudiant_user` (`ref_utilisateur`),
+  KEY `fk_etudiant_dossier` (`ref_dossier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -112,9 +114,8 @@ CREATE TABLE IF NOT EXISTS `fiche_etudiant` (
 DROP TABLE IF EXISTS `fiche_fourniture`;
 CREATE TABLE IF NOT EXISTS `fiche_fourniture` (
   `id_fiche_fourniture` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(20) NOT NULL,
   `prix` varchar(20) NOT NULL,
-  `quantite` int(30) NOT NULL,
+  `fourniseur` varchar (20) NOT NULL,
   PRIMARY KEY (`id_fiche_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -128,8 +129,8 @@ DROP TABLE IF EXISTS `fourniture`;
 CREATE TABLE IF NOT EXISTS `fourniture` (
   `id_fourniture` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) NOT NULL,
-  `stock` int(20) NOT NULL,
-  `fourniseur` varchar (20) NOT NULL,
+  `quantite` int(30) NOT NULL,
+  `ref_fiche_fourniture` int(11) NULL,
   PRIMARY KEY (`id_fourniture`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -146,8 +147,10 @@ CREATE TABLE IF NOT EXISTS `rendez-vous` (
   `heure` time NOT NULL,
   `salle` int(3) NOT NULL,
   `ref_utilisateur` int(11) NOT NULL,
+  `ref_dossier` int(11) NOT NULL,
   PRIMARY KEY (`id_rdv`),
-  KEY `fk_rdv_user` (`ref_utilisateur`)
+  KEY `fk_rdv_user` (`ref_utilisateur`),
+  KEY `fk_rdv_dossier` (`ref_dossier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -164,7 +167,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `email` varchar(40) NOT NULL,
   `mdp` varchar(15) NOT NULL,
   `role` tinyint(3) NOT NULL,
-  PRIMARY KEY (`id_user`)
+  `ref_admin` int(11) NOT NULL ,
+  PRIMARY KEY (`id_user`),
+  KEY `fk_user_user` (`ref_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -172,28 +177,38 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 --
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+    ADD CONSTRAINT `fk_user_user` FOREIGN KEY (`ref_admin`) REFERENCES `utilisateur` (`id_user`);
+
+--
 -- Contraintes pour la table `demande_fournitures`
 --
 ALTER TABLE `demande_fournitures`
-  ADD CONSTRAINT `fk_demande_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk_demande_user` FOREIGN KEY (`ref_prof`) REFERENCES `utilisateur` (`id_user`),
+  ADD CONSTRAINT `fk_demande_user` FOREIGN KEY (`ref_gestionaire`) REFERENCES `utilisateur` (`id_user`);
+
 
 --
--- Contraintes pour la table `dossier_inscription`
+-- Contraintes pour la table ``
 --
-ALTER TABLE `dossier_inscription`
-  ADD CONSTRAINT `fk_dossier_etudiant` FOREIGN KEY (`ref_fiche`) REFERENCES `fiche_etudiant` (`id_fiche`);
+
+
 
 --
 -- Contraintes pour la table `fiche_etudiant`
 --
 ALTER TABLE `fiche_etudiant`
+  ADD CONSTRAINT `fk_dossier_etudiant` FOREIGN KEY (`ref_dossier`) REFERENCES `dossier_inscription` (`id_dossier`),
   ADD CONSTRAINT `fk_etudiant_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
 
 --
 -- Contraintes pour la table `rendez-vous`
 --
 ALTER TABLE `rendez-vous`
-  ADD CONSTRAINT `fk_rdv_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `fk_rdv_user` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_user`),
+  ADD  CONSTRAINT `fk_rdv_dossier` FOREIGN KEY (`ref_dossier`) REFERENCES `dossier_inscription` (`id_dossier`);
 COMMIT;
 
 

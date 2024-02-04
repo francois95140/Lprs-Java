@@ -14,7 +14,7 @@
       <Cursor fx:constant="HAND" />
    </cursor>
    <children>
-      <AnchorPane prefHeight="593.0" prefWidth="420.0" style="-fx-background-color: #9C9C9C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="ancho" prefHeight="593.0" prefWidth="420.0" style="-fx-background-color: #9C9C9C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="65.0" layoutY="271.0" prefHeight="50.0" prefWidth="294.0" text="LPRS Gestion" textFill="WHITE" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="271.0">
                <font>

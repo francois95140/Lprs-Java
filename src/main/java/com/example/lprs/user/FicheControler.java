@@ -70,8 +70,9 @@ public class FicheControler implements Initializable {
                 FicheEtudiant newfiche = new FicheEtudiant(nom.getText(), prenom.getText(), email.getText(), diplome.getText(), Integer.parseInt(tel.getText()), rue.getText(),Integer.parseInt(cp.getText()), ville.getText(),userconect.getIdUtilisateur());
                 try {
                     FicheEtudiantRepository fiche = new FicheEtudiantRepository();
-                    fiche.save(newfiche);
-                    RunApplication.changeScene("/com/example/lprs/user/accueilU",new AccueilU(userconect));
+                    FicheEtudiant u = fiche.save(newfiche);
+                    System.out.println(u.getIdFiche());
+                    RunApplication.changeScene("/com/example/lprs/user/Dossierinscription",new CreatDossier(u,userconect));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

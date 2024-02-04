@@ -9,16 +9,23 @@ public class DossierInscripition {
     private String filiere;
     private String motivation;
     private int ref_fiche;
+    private boolean entretien;
 
 
-    public DossierInscripition(int id_dossier, String date, String heure, String filiere, String motivation, int ref_fiche, String eleven, String elevep) {
+    public DossierInscripition(int id_dossier, String date, String heure, String filiere, String motivation, int ref_fiche, boolean entretien, String eleven, String elevep) {
         this.id_dossier = id_dossier;
         this.date = date;
         this.heure = heure;
         this.filiere = filiere;
         this.motivation = motivation;
         this.ref_fiche = ref_fiche;
+        this.entretien = entretien;
         this.eleve = eleven + " " + elevep;
+    }
+    public DossierInscripition(String filiere, String motivation, int ref_fiche) {
+        this.filiere = filiere;
+        this.motivation = motivation;
+        this.ref_fiche = ref_fiche;
     }
 
     public int getId_dossier() {
@@ -73,6 +80,13 @@ public class DossierInscripition {
         return eleve;
     }
 
+    public boolean isEntretien() {
+        return entretien;
+    }
+
+    public void setEntretien(boolean entretien) {
+        this.entretien = entretien;
+    }
 }
 
 
